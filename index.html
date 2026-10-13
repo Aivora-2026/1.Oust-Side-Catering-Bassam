@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#1E4D39">
+<title>Qalat Al-Shahba Restaurants – Outside Catering</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap bar">
+  <a class="brand" href="#">
+    <img class="mark" src="logo.png" alt="" width="120" height="76">
+    <span class="name" data-i18n="logo">Qalat Al-Shahba Restaurants</span>
+  </a>
+  <div class="tools">
+    <a class="call" dir="ltr" href="tel:+966500000000">+966 50 000 0000</a>
+    <button class="lang" id="lang" type="button" aria-label="Switch language">العربية</button>
+  </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <h1 data-i18n="h1">We cook at your venue, so every plate is served hot.</h1>
+      <p class="lead" data-i18n="lead">Weddings, family gatherings, Ramadan iftars and company events. Tell us where and when, and our team arrives with the kitchen, the staff and the food.</p>
+      <ul class="facts">
+        <li><b data-i18n="f1t">Cooked on site</b><span data-i18n="f1d">Kabsa, mandi and grills prepared fresh at your majlis, tent or farm.</span></li>
+        <li><b data-i18n="f2t">From 25 to 2,000 guests</b><span data-i18n="f2d">Menus and serving staff scaled to the size of your event.</span></li>
+        <li><b data-i18n="f3t">Reply within 24 hours</b><span data-i18n="f3d">We confirm the menu, price and date by phone.</span></li>
+      </ul>
+    </div>
+
+    <div class="card" id="book">
+      <form id="form">
+        <h2 data-i18n="bookTitle">Book your event</h2>
+        <p class="sub" data-i18n="bookSub">Fill in the details below and we will call you to confirm.</p>
+
+        <fieldset>
+          <legend data-i18n="lgYou">About you</legend>
+          <label><span data-i18n="name">Full name</span>
+            <input name="name" required autocomplete="name">
+          </label>
+          <div class="row">
+            <label><span data-i18n="phone">Mobile number</span>
+              <input name="phone" type="tel" dir="ltr" required pattern="(\+966|00966|0)?5[0-9]{8}" placeholder="05X XXX XXXX" autocomplete="tel">
+            </label>
+            <label><span data-i18n="idno">Saudi ID or Iqama number</span>
+              <input name="idno" dir="ltr" inputmode="numeric" maxlength="10" pattern="[12][0-9]{9}" placeholder="1XXXXXXXXX" autocomplete="off" required>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i18n="lgWhen">Day and time</legend>
+          <div class="row">
+            <label><span data-i18n="calType">Calendar type</span>
+              <select name="cal" id="cal">
+                <option value="G" data-i18n="calG">Gregorian</option>
+                <option value="H" data-i18n="calH">Hijri</option>
+              </select>
+            </label>
+            <label><span data-i18n="time">Serving time</span>
+              <input name="time" type="time" dir="ltr" required>
+            </label>
+          </div>
+          <div id="gBox">
+            <label><span data-i18n="date">Event date</span>
+              <input name="date" id="date" type="date" dir="ltr" required>
+            </label>
+          </div>
+          <div id="hBox" class="row3" hidden>
+            <label><span data-i18n="day">Day</span><select id="hd" disabled></select></label>
+            <label><span data-i18n="month">Month</span><select id="hm" disabled></select></label>
+            <label><span data-i18n="year">Year</span><select id="hy" disabled></select></label>
+          </div>
+          <p class="note eq" id="equiv" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i18n="lgWhere">Party location</legend>
+          <label><span data-i18n="address">Venue address</span>
+            <textarea name="address" required data-i18n-ph="addressPh" placeholder="Venue name, street, landmark"></textarea>
+          </label>
+          <div class="row">
+            <label><span data-i18n="city">City</span>
+              <input name="city" required>
+            </label>
+            <label><span data-i18n="district">District</span>
+              <input name="district" required>
+            </label>
+          </div>
+          <label><span data-i18n="postal">Postal code (optional)</span>
+            <input name="postal" dir="ltr" inputmode="numeric" pattern="[0-9]{5}">
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i18n="lgEvent">Your event</legend>
+          <div class="row">
+            <label><span data-i18n="type">Event type</span>
+              <select name="type" required>
+                <option value="" data-i18n="choose">Choose one</option>
+                <option value="Wedding" data-i18n="wedding">Wedding</option>
+                <option value="Birthday" data-i18n="birthday">Birthday party</option>
+                <option value="Family" data-i18n="family">Family gathering</option>
+                <option value="Iftar" data-i18n="iftar">Ramadan iftar</option>
+                <option value="Corporate" data-i18n="corporate">Company event</option>
+                <option value="Other" data-i18n="other">Other</option>
+              </select>
+            </label>
+            <label><span data-i18n="guests">Number of guests</span>
+              <input name="guests" type="number" dir="ltr" min="10" max="5000" required>
+            </label>
+          </div>
+          <label><span data-i18n="food">Menu preference</span>
+            <select name="food" required>
+              <option value="" data-i18n="choose">Choose one</option>
+              <option value="Rice" data-i18n="rice">Kabsa and mandi</option>
+              <option value="Grill" data-i18n="grill">Grills and madhbi</option>
+              <option value="Both" data-i18n="both">Both</option>
+            </select>
+          </label>
+          <label><span data-i18n="notes">Anything else we should know?</span>
+            <textarea name="notes" data-i18n-ph="notesPh" placeholder="Special dishes, allergies, setup time"></textarea>
+          </label>
+        </fieldset>
+
+        <p class="err" id="err" role="alert" hidden></p>
+        <button class="go" type="submit" data-i18n="submit">Request booking</button>
+        <p class="note" data-i18n="note">This is not a payment. We confirm the price after calling you.</p>
+      </form>
+
+      <div class="confirm" id="confirm" tabindex="-1" aria-live="polite">
+        <h2 data-i18n="doneTitle">Request received</h2>
+        <p class="sub" data-i18n="doneSub">We will call you on the number below within 24 hours.</p>
+        <dl id="summary"></dl>
+        <button class="link" id="again" type="button" data-i18n="again">Make another booking</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="menus">
+  <div class="wrap">
+    <h2 data-i18n="menusTitle">What we bring to your venue</h2>
+    <div class="grid">
+      <div><h3 data-i18n="m1t">Kabsa and mandi</h3><p data-i18n="m1d">Slow-cooked rice with lamb, chicken or camel meat, served on large communal trays.</p></div>
+      <div><h3 data-i18n="m2t">Grills and madhbi</h3><p data-i18n="m2d">Mixed grills, madhbi and mutabbaq cooked on site over charcoal.</p></div>
+      <div><h3 data-i18n="m3t">Coffee, dates and sweets</h3><p data-i18n="m3d">Arabic coffee and tea service with fresh dates, kunafa and luqaimat for your guests.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2 data-i18n="stepsTitle">How it works</h2>
+    <ol>
+      <li><small data-i18n="s1n">Step 1</small><b data-i18n="s1t">Send your details</b><p data-i18n="s1d">Share the date, time and venue using the form.</p></li>
+      <li><small data-i18n="s2n">Step 2</small><b data-i18n="s2t">We call you</b><p data-i18n="s2d">We agree the menu and price, then take a small advance.</p></li>
+      <li><small data-i18n="s3n">Step 3</small><b data-i18n="s3t">We arrive and serve</b><p data-i18n="s3d">Our team sets up, cooks and serves, then cleans up.</p></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" data-i18n="foot">Qalat Al-Shahba Restaurants · Open daily 9 am to 11 pm · Riyadh, Jeddah, Dammam and nearby · hello@qalatalshahba.example</div>
+</footer>
+
+<script>
+  // =========================================================
+  // PASTE YOUR SUPABASE PROJECT DETAILS HERE (same as register.html)
+  // =========================================================
+  const SUPABASE_URL = "https://zxrlbenaxmjsfgexpkup.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_LsIi7VlsX2mRc6biHqgnZg_2aXDJOsL";
+  window.SUPABASE_CONFIG = { url: SUPABASE_URL, key: SUPABASE_ANON_KEY };
+</script>
+<script src="script.js"></script>
+</body>
+</html>
