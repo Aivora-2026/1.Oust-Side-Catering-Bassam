@@ -88,3 +88,7 @@ button.go:disabled{opacity:.6;cursor:wait}
 
 /* keeps a clear gap under the sticky header while content scrolls past */
 .site::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px;background:var(--bg);pointer-events:none}
+
+.terms-link{display:block;width:100%;text-align:center;padding:.8rem;margin:0 0 .8rem;font:700 1rem "Bricolage Grotesque","Tajawal",sans-serif;color:var(--leaf);background:transparent;border:2px solid var(--leaf);border-radius:10px;text-decoration:none}
+.terms-link:hover{background:var(--leaf);color:var(--leaf-ink)}
+html[lang="ar"] .terms-link{font-family:"Tajawal",sans-serif;font-weight:800}

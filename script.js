@@ -49,6 +49,7 @@
     notes: 'هل هناك شيء آخر نحتاج معرفته؟',
     notesPh: 'أطباق خاصة، حساسية، وقت التجهيز',
     submit: 'أرسل طلب الحجز',
+    termsBtn: 'الشروط والأحكام وقائمة الأسعار',
     note: 'هذا ليس دفعاً. نؤكد السعر بعد الاتصال بك.',
     doneTitle: 'تم استلام طلبك',
     doneSub: 'سنتصل بك على الرقم أدناه خلال 24 ساعة.',
@@ -155,6 +156,7 @@
     document.title = t('title');
     btn.textContent = t('langBtn');
     btn.setAttribute('aria-label', t('ariaLang'));
+    var tl = document.getElementById('termsLink'); if (tl) tl.href = 'terms.html?lang=' + l;
     if (cal.value === 'H') renderHijri();
     refreshDate();
     try { localStorage.setItem('lang', l); } catch (e) {}
@@ -236,5 +238,6 @@
   var saved = null;
   try { saved = localStorage.getItem('lang'); } catch (e) {}
   setCal();
-  setLang(saved || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en'));
+  var fromUrl = (location.search.match(/[?&]lang=(ar|en)/) || [])[1];
+  setLang(fromUrl || saved || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en'));
 })();

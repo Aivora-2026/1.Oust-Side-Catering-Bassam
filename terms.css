@@ -1,0 +1,40 @@
+/* Terms and price list page (uses the header and colours from style.css) */
+main.doc{max-width:1000px;padding-top:3rem;padding-bottom:3.5rem}
+.back{display:inline-block;margin-bottom:1.2rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold)}
+.doc h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:800}
+.doc .lead{max-width:40rem;color:var(--muted);font-size:1.1rem;margin:.8rem 0 2.2rem}
+.doc section{margin-bottom:2.8rem}
+.doc h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--gold);display:inline-block}
+html[lang="ar"] .doc h1,html[lang="ar"] .doc h2{line-height:1.45}
+.doc .note{margin:0 0 1rem;font-weight:600;color:var(--leaf)}
+
+.terms{list-style:none;margin:0;padding:0;display:grid;gap:.7rem;counter-reset:t}
+.terms li{counter-increment:t;display:flex;gap:.9rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.terms li::before{content:counter(t);flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--leaf);color:var(--leaf-ink);font:800 .95rem/2rem "Bricolage Grotesque",sans-serif;text-align:center}
+html[lang="ar"] .terms li::before{font-family:"Tajawal",sans-serif}
+
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table.pl{width:100%;border-collapse:collapse}
+.pl th,.pl td{padding:.65rem .9rem;text-align:start;border-bottom:1px solid var(--line)}
+.pl th{background:var(--leaf);color:var(--leaf-ink);font-size:.9rem;white-space:nowrap}
+.pl tbody tr:nth-child(even){background:var(--bg)}
+.pl tbody tr:last-child td{border-bottom:0}
+.pl .pkg{font-weight:700}
+.pl .price{font-weight:800;color:var(--leaf);white-space:nowrap}
+.pl .num{font-variant-numeric:tabular-nums}
+
+.cta{margin:0;text-align:center}
+.btn{display:inline-block;padding:.9rem 2rem;font:700 1.05rem "Bricolage Grotesque",sans-serif;color:var(--leaf-ink);background:var(--leaf);border-radius:10px;text-decoration:none}
+html[lang="ar"] .btn{font-family:"Tajawal",sans-serif}
+.btn:hover{filter:brightness(1.12)}
+
+@media (max-width:640px){
+  .pl,.pl thead,.pl tbody,.pl tr,.pl td{display:block}
+  .pl thead{display:none}
+  .pl tr{padding:.6rem .2rem;border-bottom:1px solid var(--line)}
+  .pl tbody tr:last-child{border-bottom:0}
+  .pl td{display:flex;justify-content:space-between;gap:1rem;padding:.25rem .9rem;border:0}
+  .pl td::before{content:attr(data-label);color:var(--muted);font-weight:600;flex:none}
+  .pl .pkg{font-size:1.05rem}
+}
+@media print{.site,.cta,.back,footer{display:none}body{background:#fff}}
