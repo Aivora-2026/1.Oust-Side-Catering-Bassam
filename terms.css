@@ -1,17 +1,12 @@
-/* Terms and price list page (uses the header and colours from style.css) */
+/* Price list page (uses the header and colours from style.css) */
 main.doc{max-width:1000px;padding-top:3rem;padding-bottom:3.5rem}
-.back{display:inline-block;margin-bottom:1.2rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold)}
-.doc h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:800}
+.back{display:inline-flex;align-items:center;min-height:44px;margin-bottom:.8rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold)}
+.doc h1{font-size:2.2rem;font-size:clamp(1.9rem,5vw,3rem);font-weight:800}
 .doc .lead{max-width:40rem;color:var(--muted);font-size:1.1rem;margin:.8rem 0 2.2rem}
 .doc section{margin-bottom:2.8rem}
-.doc h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--gold);display:inline-block}
+.doc h2{font-size:1.6rem;font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--gold);display:inline-block}
 html[lang="ar"] .doc h1,html[lang="ar"] .doc h2{line-height:1.45}
 .doc .note{margin:0 0 1rem;font-weight:600;color:var(--leaf)}
-
-.terms{list-style:none;margin:0;padding:0;display:grid;gap:.7rem;counter-reset:t}
-.terms li{counter-increment:t;display:flex;gap:.9rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
-.terms li::before{content:counter(t);flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--leaf);color:var(--leaf-ink);font:800 .95rem/2rem "Bricolage Grotesque",sans-serif;text-align:center}
-html[lang="ar"] .terms li::before{font-family:"Tajawal",sans-serif}
 
 .tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
 table.pl{width:100%;border-collapse:collapse}
@@ -22,19 +17,64 @@ table.pl{width:100%;border-collapse:collapse}
 .pl .pkg{font-weight:700}
 .pl .price{font-weight:800;color:var(--leaf);white-space:nowrap}
 .pl .num{font-variant-numeric:tabular-nums}
+.pl td{word-break:break-word}
 
 .cta{margin:0;text-align:center}
-.btn{display:inline-block;padding:.9rem 2rem;font:700 1.05rem "Bricolage Grotesque",sans-serif;color:var(--leaf-ink);background:var(--leaf);border-radius:10px;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.8rem 2rem;font:700 1.05rem "Bricolage Grotesque",sans-serif;color:var(--leaf-ink);background:var(--leaf);border-radius:10px;text-decoration:none}
 html[lang="ar"] .btn{font-family:"Tajawal",sans-serif}
 .btn:hover{filter:brightness(1.12)}
 
+/* mobile number gate */
+.gate{max-width:28rem;margin:0 auto 2.5rem}
+.gate h2{font-size:1.5rem;margin:0 0 .3rem;border:0;padding:0;display:block}
+.gate form{margin:0}
+.gate button.go{min-height:48px}
+
+/* Normal / VIP tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 1.8rem}
+.tab{min-height:48px;padding:.55rem 1.6rem;font:700 1.05rem "Bricolage Grotesque","Tajawal",sans-serif;color:var(--ink);background:var(--surface);border:2px solid var(--line);border-radius:999px;cursor:pointer}
+.tab:hover{border-color:var(--leaf)}
+.tab.on{background:var(--leaf);border-color:var(--leaf);color:var(--leaf-ink)}
+html[lang="ar"] .tab{font-family:"Tajawal",sans-serif;font-weight:800}
+@media (max-width:480px){.tab{flex:1 1 0;padding:.55rem .8rem}}
+
+/* menu overview */
+.menunote{margin:0 0 1rem;color:var(--muted)}
+.menunav{display:flex;flex-wrap:wrap;margin:0 0 1.2rem}
+.chip{display:inline-flex;align-items:center;min-height:44px;margin:.25rem .5rem .25rem 0;padding:.3rem 1rem;font-weight:700;text-decoration:none;color:var(--leaf);border:2px solid var(--leaf);border-radius:999px}
+html[dir="rtl"] .chip{margin:.25rem 0 .25rem .5rem}
+.chip:hover{background:var(--leaf);color:var(--leaf-ink)}
+.cat{margin-bottom:1.4rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem}
+.cat h3{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 .7rem;padding-bottom:.5rem;border-bottom:3px solid var(--gold);font-size:1.3rem;color:var(--leaf)}
+html[lang="ar"] .cat h3{font-family:"Tajawal",sans-serif;line-height:1.5}
+.cat h3 .cname{display:block}
+.cat h3 .sub{display:block;font:400 .85rem "Source Sans 3","Tajawal",sans-serif;color:var(--muted)}
+.cat h3 .cnt{flex:none;margin-inline-start:1rem;font:600 .85rem "Source Sans 3","Tajawal",sans-serif;color:var(--muted)}
+.items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));grid-column-gap:1.6rem;column-gap:1.6rem}
+.items li{padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.items .nm{display:block;text-align:start}
+.items .nm bdi{display:block;font-weight:700;line-height:1.4}
+.nm .sub{display:block;margin:0;max-width:none}
+.items .sub{display:block}
+.items .sub bdi{display:block;font-weight:400;font-size:.88rem;color:var(--muted)}
+html[dir="ltr"] .items .nm,html[dir="ltr"] .cat h3 .nm{text-align:left}
+html[dir="rtl"] .items .nm,html[dir="rtl"] .cat h3 .nm{text-align:right}
+
 @media (max-width:640px){
+  main.doc{padding-top:2rem;padding-bottom:2.5rem}
+  .doc .lead{margin-bottom:1.6rem}
+  .doc section{margin-bottom:2.2rem}
+  .tw{overflow:visible;background:none;border:0;border-radius:0}
   .pl,.pl thead,.pl tbody,.pl tr,.pl td{display:block}
   .pl thead{display:none}
-  .pl tr{padding:.6rem .2rem;border-bottom:1px solid var(--line)}
-  .pl tbody tr:last-child{border-bottom:0}
-  .pl td{display:flex;justify-content:space-between;gap:1rem;padding:.25rem .9rem;border:0}
-  .pl td::before{content:attr(data-label);color:var(--muted);font-weight:600;flex:none}
-  .pl .pkg{font-size:1.05rem}
+  .pl tr,.pl tbody tr:nth-child(even){background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.55rem .15rem;margin-bottom:.8rem}
+  .pl tbody tr:last-child td{border-bottom:0}
+  .pl td{display:flex;align-items:baseline;justify-content:space-between;padding:.28rem .9rem;border:0}
+  .pl td::before{content:attr(data-label);flex:none;margin-inline-end:1rem;color:var(--muted);font-weight:600}
+  .pl td.dash{display:none}
+  .pl .pkg{font-size:1.08rem}
+  .pl .price{font-size:1.1rem}
+  .cta{text-align:stretch}
+  .btn{display:flex;width:100%}
 }
-@media print{.site,.cta,.back,footer{display:none}body{background:#fff}}
+@media print{.tabs,.gate,.site,.cta,.back,.menunav,footer{display:none}.cat{break-inside:avoid}body{background:#fff}}

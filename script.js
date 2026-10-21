@@ -6,7 +6,7 @@
     h1: 'نطبخ في موقع مناسبتك، ليصل كل طبق ساخناً.',
     lead: 'أعراس ولقاءات عائلية وإفطارات رمضان وفعاليات الشركات. أخبرنا بالمكان والموعد، وسيصل فريقنا بالمطبخ والعمال والطعام.',
     f1t: 'الطبخ في موقعك',
-    f1d: 'كبسة ومندي ومشويات تُحضَّر طازجة في مجلسك أو خيمتك أو مزرعتك.',
+    f1d: 'لدينا أفضل الطباخين على مستوى عالمي يتناسب مع جميع الأذواق العالمية العربية والاسيوية الأوربية والأيطالية',
     f2t: 'من 25 إلى 2,000 ضيف',
     f2d: 'قوائم الطعام وعدد العمال بحسب حجم مناسبتك.',
     f3t: 'نرد عليك خلال 24 ساعة',
@@ -30,7 +30,7 @@
     address: 'عنوان المكان',
     addressPh: 'اسم المكان، الشارع، أقرب معلم',
     city: 'المدينة',
-    district: 'الحي',
+    chooseCity: 'اختر المدينة',
     postal: 'الرمز البريدي (اختياري)',
     lgEvent: 'مناسبتك',
     type: 'نوع المناسبة',
@@ -49,7 +49,22 @@
     notes: 'هل هناك شيء آخر نحتاج معرفته؟',
     notesPh: 'أطباق خاصة، حساسية، وقت التجهيز',
     submit: 'أرسل طلب الحجز',
-    termsBtn: 'الشروط والأحكام وقائمة الأسعار',
+    termsBtn: 'قائمة الأسعار والمنيو',
+    trackLink: 'هل حجزت من قبل؟ تحقق من حالة حجزك', trackTitle: 'تحقق من حجزك',
+    trackSub: 'أدخل رقم الجوال الذي استخدمته عند الحجز لعرض تفاصيل حجزك وحالته.', trackBtn: 'تحقق',
+    trackWorking: 'جارٍ البحث...', trackBad: 'أدخل رقم جوال سعودي صحيح، مثل 05XXXXXXXX.',
+    trackNone: 'لم نجد حجزاً بهذا الرقم. تأكد من الرقم الذي استخدمته عند الحجز.',
+    trackMany: 'عدد محاولات البحث كبير. حاول مرة أخرى بعد 15 دقيقة.',
+    trackErr: 'تعذر الاتصال. تحقق من الإنترنت وحاول مرة أخرى.', trackCount: 'عدد الحجوزات: ',
+    st_new: 'قيد المراجعة', st_confirmed: 'مؤكد', st_completed: 'مكتمل', st_cancelled: 'ملغي',
+    sm_new: 'استلمنا طلبك وسنتصل بك قريباً للتأكيد.', sm_confirmed: 'تم تأكيد حجزك. نتشرف بخدمتكم في الموعد المحدد.',
+    sm_completed: 'تمت خدمة هذا الحجز. شكراً لاختياركم لنا.', sm_cancelled: 'تم إلغاء هذا الحجز. للاستفسار يرجى التواصل معنا.',
+    tkDate: 'التاريخ', tkEvent: 'المناسبة', tkMenu: 'القائمة', tkPlace: 'الموقع',
+    agBtnSign: 'عرض العقد والتوقيع', agBtnView: 'عرض العقد', agSigned: 'تم توقيع العقد',
+    agWhy: 'حفاظاً على خصوصيتك، أدخل رقم هويتك الوطنية أو إقامتك لفتح العقد.', agOpen: 'فتح العقد', agOpening: 'جارٍ فتح العقد...',
+    agBadId: 'أدخل رقم هوية أو إقامة صحيحاً مكوناً من 10 أرقام.', agMismatch: 'البيانات المدخلة لا تطابق سجلاتنا.',
+    agNotReady: 'العقد غير جاهز بعد. سنتواصل معك بعد استكمال بيانات الحجز.',
+    agMany: 'محاولات خاطئة كثيرة. حاول مرة أخرى بعد 15 دقيقة.', agPopup: 'يرجى السماح بالنوافذ المنبثقة لهذه الصفحة ثم المحاولة مرة أخرى.',
     note: 'هذا ليس دفعاً. نؤكد السعر بعد الاتصال بك.',
     doneTitle: 'تم استلام طلبك',
     doneSub: 'سنتصل بك على الرقم أدناه خلال 24 ساعة.',
@@ -69,7 +84,20 @@
     sName: 'الاسم', sPhone: 'الجوال', sWhen: 'اليوم والوقت', sWhere: 'الموقع', sEvent: 'المناسبة', sFood: 'القائمة',
     guestsWord: 'ضيف', sRef: 'رقم الحجز', sending: 'جارٍ الإرسال...', errSend: 'تعذّر إرسال الطلب. تحقق من الاتصال وحاول مرة أخرى، أو اتصل بنا.', errConfig: 'لم يتم ربط قاعدة البيانات بعد. أضف مفتاح Supabase في ملف index.html.', sId: 'الهوية / الإقامة', eqH: 'التاريخ الهجري: ', eqG: 'التاريخ الميلادي: ', ariaLang: 'تغيير اللغة', langBtn: 'English'
   };
-  var EN = { sName: 'Name', sPhone: 'Mobile', sId: 'Saudi ID / Iqama', sWhen: 'Day and time', sWhere: 'Location',
+  var EN = { trackWorking: 'Searching...', trackBad: 'Enter a valid Saudi mobile number, like 05XXXXXXXX.',
+    trackNone: 'We could not find a booking with this number. Check the number you used when booking.',
+    trackMany: 'Too many searches. Please try again in 15 minutes.',
+    trackErr: 'Could not connect. Check your internet and try again.', trackCount: 'Bookings found: ',
+    st_new: 'Under review', st_confirmed: 'Confirmed', st_completed: 'Completed', st_cancelled: 'Cancelled',
+    sm_new: 'We received your request and will call you soon to confirm.', sm_confirmed: 'Your booking is confirmed. We look forward to serving you.',
+    sm_completed: 'This booking has been served. Thank you for choosing us.', sm_cancelled: 'This booking was cancelled. Please contact us if you have a question.',
+    tkDate: 'Date', tkEvent: 'Event', tkMenu: 'Menu', tkPlace: 'Location',
+    agBtnSign: 'View and sign agreement', agBtnView: 'View agreement', agSigned: 'Agreement signed',
+    agWhy: 'For your privacy, enter your Saudi ID or Iqama number to open your agreement.', agOpen: 'Open agreement', agOpening: 'Opening the agreement...',
+    agBadId: 'Enter a valid 10-digit Saudi ID or Iqama number.', agMismatch: 'These details do not match our records.',
+    agNotReady: 'Your agreement is not ready yet. We will contact you once your booking details are completed.',
+    agMany: 'Too many wrong attempts. Please try again in 15 minutes.', agPopup: 'Please allow pop-ups for this page, then try again.',
+    sName: 'Name', sPhone: 'Mobile', sId: 'Saudi ID / Iqama', sWhen: 'Day and time', sWhere: 'Location',
     sEvent: 'Event', sFood: 'Menu', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
     eqH: 'Hijri date: ', eqG: 'Gregorian date: ', title: document.title };
 
@@ -159,6 +187,7 @@
     var tl = document.getElementById('termsLink'); if (tl) tl.href = 'terms.html?lang=' + l;
     if (cal.value === 'H') renderHijri();
     refreshDate();
+    if (typeof trackShow === 'function' && trackData) trackShow();
     try { localStorage.setItem('lang', l); } catch (e) {}
   }
 
@@ -182,7 +211,7 @@
     var tm = new Date('2000-01-01T' + f.get('time')).toLocaleTimeString(lang === 'ar' ? 'ar-SA-u-nu-latn' : 'en-GB', { hour: 'numeric', minute: '2-digit' });
     var when = fmt(d, main) + ' (' + fmt(d, other) + ') – ' + tm;
     var id = String(f.get('idno'));
-    var place = [f.get('address'), f.get('district'), f.get('city'), f.get('postal')].filter(Boolean).join(lang === 'ar' ? '، ' : ', ');
+    var place = [f.get('address'), f.get('city'), f.get('postal')].filter(Boolean).join(lang === 'ar' ? '، ' : ', ');
     var rows = [
       [t('sRef'), ref], [t('sName'), f.get('name')], [t('sPhone'), f.get('phone')],
       [t('sId'), id.charAt(0) + '••••••' + id.slice(-3)],
@@ -210,7 +239,7 @@
       calendar_type: cal.value === 'G' ? 'gregorian' : 'hijri',
       event_date: d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()),
       hijri_date: hijriStr(d), event_time: f.get('time'),
-      address: f.get('address'), district: f.get('district'), city: f.get('city'), postal_code: f.get('postal'),
+      address: f.get('address'), city: f.get('city'), postal_code: f.get('postal'),
       event_type: f.get('type'), guests: parseInt(f.get('guests'), 10), menu: f.get('food'),
       notes: f.get('notes'), language: lang
     };
@@ -219,14 +248,42 @@
     go.disabled = true; go.textContent = t('sending');
     fetch(cfg.url + '/rest/v1/rpc/catering_submit_booking', { method: 'POST', headers: headers, body: JSON.stringify({ p: payload }) })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (ref) { showSummary(f, d, ref); })
+      .then(function (ref) { clearDraft(); showSummary(f, d, ref); })
       .catch(function () { showErr('errSend'); })
       .then(function () { go.disabled = false; go.textContent = t('submit'); });
   });
 
   document.getElementById('again').addEventListener('click', function () {
-    form.reset(); setCal(); form.style.display = ''; box.classList.remove('show');
+    form.reset(); clearDraft(); setCal(); form.style.display = ''; box.classList.remove('show');
   });
+
+  // ----- Keep the customer's details while they look at the price list -----
+  var DRAFT = 'bookingDraft', DRAFT_FIELDS = ['name', 'phone', 'idno', 'cal', 'time', 'date', 'address', 'city', 'postal', 'type', 'guests', 'food', 'notes'];
+  function saveDraft() {
+    if (box.classList.contains('show')) return;
+    var o = {};
+    DRAFT_FIELDS.forEach(function (n) { o[n] = form.elements[n].value; });
+    o.hy = hy.value; o.hm = hm.value; o.hd = hd.value;
+    try { sessionStorage.setItem(DRAFT, JSON.stringify(o)); } catch (e) {}
+  }
+  function clearDraft() { try { sessionStorage.removeItem(DRAFT); } catch (e) {} }
+  function restoreDraft() {
+    var o = null;
+    try { o = JSON.parse(sessionStorage.getItem(DRAFT) || 'null'); } catch (e) {}
+    if (o) {
+      DRAFT_FIELDS.forEach(function (n) { if (o[n] != null) form.elements[n].value = o[n]; });
+      setCal();
+      if (cal.value === 'H') {
+        hy.value = o.hy; renderHijri(); hm.value = o.hm; renderHijri(); hd.value = o.hd; refreshDate();
+      }
+    } else {
+      // first visit: if they already typed their number to open the price list, reuse it
+      var p = null; try { p = sessionStorage.getItem('plPhone'); } catch (e) {}
+      if (p && !form.elements.phone.value) form.elements.phone.value = p;
+    }
+  }
+  form.addEventListener('input', saveDraft);
+  form.addEventListener('change', saveDraft);
 
   cal.addEventListener('change', setCal);
   dateIn.addEventListener('change', refreshDate);
@@ -235,9 +292,133 @@
   hd.addEventListener('change', refreshDate);
   btn.addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar'); });
 
+
+  // ---------- Check your booking (by mobile number) ----------
+  var trackForm = document.getElementById('trackForm'), trackOut = document.getElementById('trackOut'),
+      trackMsg = document.getElementById('trackMsg'), trackBtn = document.getElementById('trackBtn'),
+      trackData = null;
+  var TYPE_KEY = { Wedding: 'wedding', Birthday: 'birthday', Family: 'family', Iftar: 'iftar', Corporate: 'corporate', Other: 'other' };
+  var MENU_KEY = { Rice: 'rice', Grill: 'grill', Both: 'both' };
+  function tel(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  // ---------- Agreement (needs phone + booking number + Saudi ID) ----------
+  var lastPhone = '', agCtx = {};
+  function rpcPost(name, body) {
+    var cfg = window.SUPABASE_CONFIG || {};
+    var headers = { 'Content-Type': 'application/json', apikey: cfg.key };
+    if (cfg.key.indexOf('eyJ') === 0) headers.Authorization = 'Bearer ' + cfg.key;
+    return fetch(cfg.url + '/rest/v1/rpc/' + name, { method: 'POST', headers: headers, body: JSON.stringify(body) })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  // Called from the agreement page when the customer presses "Save signature"
+  window.__customerSign = function (ref, dataUrl) {
+    var c = agCtx[ref];
+    if (!c) return Promise.resolve({ ok: false, error: 'no_context' });
+    return rpcPost('catering_customer_sign', { p_phone: c.phone, p_reference: ref, p_national_id: c.id, p_signature: dataUrl }).then(function (res) {
+      if (res && res.ok && trackData) {
+        trackData.forEach(function (b) { if (b.reference === ref) b.agreement_signed = true; });
+        trackShow();
+      }
+      return res;
+    });
+  };
+  function agreementForm(b) {
+    var form = tel('form', 'tk-verify'); form.hidden = true; form.setAttribute('novalidate', '');
+    form.appendChild(tel('p', 'tk-why', t('agWhy')));
+    var lab = tel('label', null), sp = tel('span', null, t('idno'));
+    var inp = document.createElement('input');
+    inp.type = 'text'; inp.inputMode = 'numeric'; inp.maxLength = 10; inp.dir = 'ltr'; inp.autocomplete = 'off'; inp.placeholder = '1XXXXXXXXX';
+    lab.appendChild(sp); lab.appendChild(inp); form.appendChild(lab);
+    var msg = tel('p', 'trackmsg bad'); msg.hidden = true; form.appendChild(msg);
+    var go = tel('button', 'go', t('agOpen')); go.type = 'submit'; form.appendChild(go);
+    function say(k) { msg.textContent = t(k); msg.hidden = false; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); msg.hidden = true;
+      var id = inp.value.replace(/\D/g, '');
+      if (!/^[12][0-9]{9}$/.test(id)) { say('agBadId'); return; }
+      var w = window.open('', '_blank');                       // opened inside the tap so phones allow it
+      if (!w) { say('agPopup'); return; }
+      w.document.open();
+      w.document.write('<!DOCTYPE html><meta charset="utf-8"><title>…</title><p style="font:18px sans-serif;padding:2rem;text-align:center">' + esc2(t('agOpening')) + '</p>');
+      w.document.close();
+      go.disabled = true;
+      rpcPost('catering_customer_agreement', { p_phone: lastPhone, p_reference: b.reference, p_national_id: id }).then(function (res) {
+        if (!res || !res.ok) {
+          w.close();
+          say(res && res.error === 'too_many' ? 'agMany' : (res && res.error === 'not_ready' ? 'agNotReady' : 'agMismatch'));
+          return;
+        }
+        agCtx[b.reference] = { phone: lastPhone, id: id };
+        w.document.open(); w.document.write(window.CustomerAgreement.html(res.data)); w.document.close();
+        inp.value = ''; form.hidden = true;
+      }).catch(function () { w.close(); say('trackErr'); })
+        .then(function () { go.disabled = false; });
+    });
+    return form;
+  }
+  function esc2(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  function trackSay(key, bad) { trackMsg.textContent = t(key); trackMsg.className = 'trackmsg' + (bad ? ' bad' : ''); trackMsg.hidden = false; }
+
+  function trackShow() {
+    trackOut.innerHTML = '';
+    if (!trackData) return;
+    if (!trackData.length) { trackSay('trackNone', false); return; }
+    trackMsg.textContent = t('trackCount') + trackData.length; trackMsg.className = 'trackmsg'; trackMsg.hidden = false;
+    trackData.forEach(function (b) {
+      var card = tel('article', 'tk'); card.setAttribute('data-status', b.status);
+      var head = tel('div', 'tk-head'), ref = tel('span', 'tk-ref', b.reference); ref.dir = 'ltr';
+      head.appendChild(ref); head.appendChild(tel('span', 'tk-st', t('st_' + b.status) || b.status)); card.appendChild(head);
+
+      var d = new Date(b.event_date + 'T12:00:00');
+      var tm = new Date('2000-01-01T' + b.event_time).toLocaleTimeString(lang === 'ar' ? 'ar-SA-u-nu-latn' : 'en-GB', { hour: 'numeric', minute: '2-digit' });
+      var when = tel('div', 'tk-when', fmt(d, 'gregory') + ' · ' + tm);
+      when.appendChild(tel('small', null, fmt(d, HIJRI)));
+      card.appendChild(when);
+
+      var dl = tel('dl');
+      function row(k, v) { dl.appendChild(tel('dt', null, k)); dl.appendChild(tel('dd', null, v)); }
+      row(t('tkEvent'), (t(TYPE_KEY[b.event_type]) || b.event_type) + ' · ' + b.guests + ' ' + t('guestsWord'));
+      row(t('tkMenu'), t(MENU_KEY[b.menu]) || b.menu);
+      row(t('tkPlace'), [b.district, b.city].filter(Boolean).join(lang === 'ar' ? '، ' : ', '));
+      card.appendChild(dl);
+      if (t('sm_' + b.status)) card.appendChild(tel('p', 'tk-note', t('sm_' + b.status)));
+      if (b.agreement_signed) card.appendChild(tel('p', 'tk-signed', '\u2714 ' + t('agSigned')));
+      if (b.agreement_ready) {
+        var form = agreementForm(b), ab = tel('button', 'tk-ag', b.agreement_signed ? t('agBtnView') : t('agBtnSign'));
+        ab.type = 'button';
+        ab.addEventListener('click', function () { form.hidden = !form.hidden; if (!form.hidden) form.querySelector('input').focus(); });
+        card.appendChild(ab); card.appendChild(form);
+      }
+      trackOut.appendChild(card);
+    });
+  }
+
+  trackForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    trackOut.innerHTML = ''; trackData = null;
+    var raw = document.getElementById('trackPhone').value, digits = raw.replace(/\D/g, '');
+    lastPhone = raw;
+    if (!/^(00966|966|0)?5[0-9]{8}$/.test(digits)) { trackSay('trackBad', true); return; }
+    var cfg = window.SUPABASE_CONFIG || {};
+    if (!cfg.url || !cfg.key) { trackSay('trackErr', true); return; }
+    var headers = { 'Content-Type': 'application/json', apikey: cfg.key };
+    if (cfg.key.indexOf('eyJ') === 0) headers.Authorization = 'Bearer ' + cfg.key;
+    trackBtn.disabled = true; trackSay('trackWorking', false);
+    fetch(cfg.url + '/rest/v1/rpc/catering_track_bookings', { method: 'POST', headers: headers, body: JSON.stringify({ p_phone: raw }) })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (res) {
+        if (!res.ok) { trackSay(res.error === 'too_many' ? 'trackMany' : 'trackBad', true); return; }
+        trackData = res.data || []; trackShow();
+      })
+      .catch(function () { trackSay('trackErr', true); })
+      .then(function () { trackBtn.disabled = false; });
+  });
+
   var saved = null;
   try { saved = localStorage.getItem('lang'); } catch (e) {}
   setCal();
+  restoreDraft();
   var fromUrl = (location.search.match(/[?&]lang=(ar|en)/) || [])[1];
   setLang(fromUrl || saved || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en'));
 })();

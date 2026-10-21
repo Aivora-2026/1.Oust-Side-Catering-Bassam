@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 <meta name="color-scheme" content="light only">
 <meta name="theme-color" content="#1E4D39">
 <title>Qalat Al-Shahba Restaurants – Outside Catering</title>
@@ -30,10 +31,11 @@
       <h1 data-i18n="h1">We cook at your venue, so every plate is served hot.</h1>
       <p class="lead" data-i18n="lead">Weddings, family gatherings, Ramadan iftars and company events. Tell us where and when, and our team arrives with the kitchen, the staff and the food.</p>
       <ul class="facts">
-        <li><b data-i18n="f1t">Cooked on site</b><span data-i18n="f1d">Kabsa, mandi and grills prepared fresh at your majlis, tent or farm.</span></li>
+        <li><b data-i18n="f1t">Cooked on site</b><span data-i18n="f1d">We have world-class chefs who suit all international tastes: Arabic, Asian, European and Italian.</span></li>
         <li><b data-i18n="f2t">From 25 to 2,000 guests</b><span data-i18n="f2d">Menus and serving staff scaled to the size of your event.</span></li>
         <li><b data-i18n="f3t">Reply within 24 hours</b><span data-i18n="f3d">We confirm the menu, price and date by phone.</span></li>
       </ul>
+      <p class="trackhint"><a href="#track" data-i18n="trackLink">Already booked? Check your booking status</a></p>
     </div>
 
     <div class="card" id="book">
@@ -89,15 +91,32 @@
           </label>
           <div class="row">
             <label><span data-i18n="city">City</span>
-              <input name="city" required>
+              <select name="city" required>
+                <option value="" data-i18n="chooseCity">Choose your city</option>
+                <option value="الباحة" lang="ar">الباحة</option>
+                <option value="بني سار" lang="ar">بني سار</option>
+                <option value="بني كبير" lang="ar">بني كبير</option>
+                <option value="بلجرشي" lang="ar">بلجرشي</option>
+                <option value="العقيق" lang="ar">العقيق</option>
+                <option value="المندق" lang="ar">المندق</option>
+                <option value="الاطاولة" lang="ar">الاطاولة</option>
+                <option value="جرب" lang="ar">جرب</option>
+                <option value="المخواه" lang="ar">المخواه</option>
+                <option value="نمرة" lang="ar">نمرة</option>
+                <option value="كرا" lang="ar">كرا</option>
+                <option value="وراخ" lang="ar">وراخ</option>
+                <option value="نخال" lang="ar">نخال</option>
+                <option value="معشوقة" lang="ar">معشوقة</option>
+                <option value="بيده" lang="ar">بيده</option>
+                <option value="بني حسن" lang="ar">بني حسن</option>
+                <option value="بالشهم" lang="ar">بالشهم</option>
+                <option value="البشائر" lang="ar">البشائر</option>
+              </select>
             </label>
-            <label><span data-i18n="district">District</span>
-              <input name="district" required>
+            <label><span data-i18n="postal">Postal code (optional)</span>
+              <input name="postal" dir="ltr" inputmode="numeric" pattern="[0-9]{5}">
             </label>
           </div>
-          <label><span data-i18n="postal">Postal code (optional)</span>
-            <input name="postal" dir="ltr" inputmode="numeric" pattern="[0-9]{5}">
-          </label>
         </fieldset>
 
         <fieldset>
@@ -132,7 +151,7 @@
         </fieldset>
 
         <p class="err" id="err" role="alert" hidden></p>
-        <a class="terms-link" id="termsLink" href="terms.html" target="_blank" rel="noopener" data-i18n="termsBtn">Terms and conditions with Price List</a>
+        <a class="terms-link" id="termsLink" href="terms.html" data-i18n="termsBtn">Price List and Menu</a>
         <button class="go" type="submit" data-i18n="submit">Request booking</button>
         <p class="note" data-i18n="note">This is not a payment. We confirm the price after calling you.</p>
       </form>
@@ -146,6 +165,21 @@
     </div>
   </section>
 </div>
+
+<section class="track" id="track">
+  <div class="wrap">
+    <h2 data-i18n="trackTitle">Check your booking</h2>
+    <p class="sub" data-i18n="trackSub">Enter the mobile number you used when booking to see your booking details and status.</p>
+    <form id="trackForm" class="trackform" novalidate>
+      <label class="trackfield"><span data-i18n="phone">Mobile number</span>
+        <input id="trackPhone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="05X XXX XXXX" maxlength="20" required>
+      </label>
+      <button class="go" id="trackBtn" type="submit" data-i18n="trackBtn">Check</button>
+    </form>
+    <p class="trackmsg" id="trackMsg" role="status" aria-live="polite" hidden></p>
+    <div class="trackout" id="trackOut"></div>
+  </div>
+</section>
 
 <section class="menus">
   <div class="wrap">
@@ -181,6 +215,7 @@
   const SUPABASE_ANON_KEY = "sb_publishable_LsIi7VlsX2mRc6biHqgnZg_2aXDJOsL";
   window.SUPABASE_CONFIG = { url: SUPABASE_URL, key: SUPABASE_ANON_KEY };
 </script>
+<script src="agreement.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

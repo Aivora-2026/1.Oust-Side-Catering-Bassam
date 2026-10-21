@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 <meta name="color-scheme" content="light only">
 <meta name="theme-color" content="#1E4D39">
-<title>Terms and conditions with Price List – Qalat Al-Shahba Restaurants</title>
+<title>Price List and Menu – Qalat Al-Shahba Restaurants</title>
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=Tajawal:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
@@ -30,23 +31,55 @@
   <h1 id="h1"></h1>
   <p class="lead" id="lead"></p>
 
-  <section>
-    <h2 id="hTerms"></h2>
-    <ol class="terms" id="terms"></ol>
+  <section class="card gate" id="gate">
+    <h2 id="gateTitle"></h2>
+    <p class="sub" id="gateSub"></p>
+    <form id="gateForm" novalidate>
+      <label><span id="gatePhoneL"></span>
+        <input id="gatePhone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="05X XXX XXXX" maxlength="20" required>
+      </label>
+      <p class="err" id="gateErr" role="alert" hidden></p>
+      <button class="go" id="gateBtn" type="submit"></button>
+    </form>
   </section>
 
-  <section>
-    <h2 id="hBuf"></h2>
-    <p class="note" id="bufNote"></p>
-    <div class="tw"><table class="pl" id="bufTable"></table></div>
-  </section>
+  <div id="content" hidden>
+  <div class="tabs" id="tabs" role="tablist">
+    <button class="tab on" id="tabNormal" type="button" role="tab" aria-selected="true"></button>
+    <button class="tab" id="tabVip" type="button" role="tab" aria-selected="false"></button>
+  </div>
 
-  <section>
-    <h2 id="hDes"></h2>
-    <div class="tw"><table class="pl" id="desTable"></table></div>
+  <div id="pNormal">
+    <section>
+      <h2 id="hBuf"></h2>
+      <p class="note" id="bufNote"></p>
+      <div class="tw"><table class="pl" id="bufTable"></table></div>
+    </section>
+
+    <section>
+      <h2 id="hDes"></h2>
+      <div class="tw"><table class="pl" id="desTable"></table></div>
+    </section>
+  </div>
+
+  <div id="pVip" hidden>
+    <section>
+      <h2 id="hVip"></h2>
+      <p class="note" id="vipNote"></p>
+      <div class="tw"><table class="pl" id="vipTable"></table></div>
+    </section>
+  </div>
+
+  <section id="menuSec">
+    <h2 id="hMenu"></h2>
+    <p class="note" id="menuSub"></p>
+    <p class="menunote" id="menuNote"></p>
+    <nav class="menunav" id="menuNav" aria-label="Menu categories"></nav>
+    <div id="menuBody"></div>
   </section>
 
   <p class="cta"><a class="btn" id="cta" href="index.html#book"></a></p>
+  </div>
 </main>
 
 <footer>
