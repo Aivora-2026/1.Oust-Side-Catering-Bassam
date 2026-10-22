@@ -23,6 +23,7 @@
     day: 'اليوم',
     month: 'الشهر',
     year: 'السنة',
+    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفيه VIP', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات VIP', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
     lgWhen: 'اليوم والوقت',
     date: 'تاريخ المناسبة',
     time: 'وقت تقديم الطعام',
@@ -49,7 +50,7 @@
     notes: 'هل هناك شيء آخر نحتاج معرفته؟',
     notesPh: 'أطباق خاصة، حساسية، وقت التجهيز',
     submit: 'أرسل طلب الحجز',
-    termsBtn: 'قائمة الأسعار والمنيو',
+    termsBtn: 'اقرأ الشروط والأحكام أولاً، قبل أن تحجز مناسبتك',
     trackLink: 'هل حجزت من قبل؟ تحقق من حالة حجزك', trackTitle: 'تحقق من حجزك',
     trackSub: 'أدخل رقم الجوال الذي استخدمته عند الحجز لعرض تفاصيل حجزك وحالته.', trackBtn: 'تحقق',
     trackWorking: 'جارٍ البحث...', trackBad: 'أدخل رقم جوال سعودي صحيح، مثل 05XXXXXXXX.',
@@ -98,7 +99,7 @@
     agNotReady: 'Your agreement is not ready yet. We will contact you once your booking details are completed.',
     agMany: 'Too many wrong attempts. Please try again in 15 minutes.', agPopup: 'Please allow pop-ups for this page, then try again.',
     sName: 'Name', sPhone: 'Mobile', sId: 'Saudi ID / Iqama', sWhen: 'Day and time', sWhere: 'Location',
-    sEvent: 'Event', sFood: 'Menu', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
+    sEvent: 'Event', sFood: 'Menu', sBuffet: 'Buffet type', pkgBuf: 'Buffet packages', pkgDes: 'Dessert-only buffets', pkgVip: 'VIP packages', sPackage: 'Package', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
     eqH: 'Hijri date: ', eqG: 'Gregorian date: ', title: document.title };
 
   var textNodes = document.querySelectorAll('[data-i18n]');
@@ -175,16 +176,100 @@
   }
 
   // ----- Language -----
+  // ----- Ordinary Buffet packages (from the price list) -----
+  // [guests, price SAR, main-dish heaters, heater size (litres), cold appetizers, desserts, silver fruit salad included]
+  var PKG_B = [
+    [25, 3250, 6, 4, 7, 6, 0], [30, 3600, 7, 4, 8, 7, 0], [35, 3900, 8, 4, 9, 8, 1], [40, 4600, 9, 4, 8, 9, 0], [50, 5200, 8, 6, 8, 8, 0],
+    [55, 5500, 8, 6, 8, 9, 0], [60, 5900, 9, 6, 8, 9, 0], [70, 6500, 9, 6, 9, 9, 0], [80, 6900, 10, 6, 7, 8, 0], [90, 7500, 8, 9, 7, 8, 0],
+    [100, 7900, 9, 9, 8, 8, 0], [120, 8500, 10, 9, 8, 9, 0], [140, 9200, 11, 9, 9, 9, 0], [160, 9900, 12, 9, 10, 10, 0],
+    [180, 10500, 14, 9, 12, 10, 0], [200, 11500, 15, 9, 13, 11, 0], [220, 11900, 16, 9, 14, 12, 0], [250, 12500, 18, 9, 15, 13, 0],
+    [280, 13700, 19, 9, 16, 13, 0], [300, 14500, 21, 9, 16, 13, 0], [320, 14950, 22, 9, 17, 13, 0], [360, 16900, 25, 9, 18, 14, 0],
+    [400, 18500, 30, 9, 20, 16, 0], [450, 20700, 32, 9, 20, 18, 0], [500, 23000, 40, 9, 22, 20, 0]
+  ];
+  // [guests, price SAR, what is served in Arabic, what is served in English]
+  var PKG_D = [
+    [120, 3750, '15 طبق حلا مشكل + 1 سيلفر مدرج فواكه + 2 سخان ام علي', '15 assorted dessert plates + 1 tiered silver fruit stand + 2 Om Ali heaters'],
+    [160, 4200, '19 طبق حلا مشكل + 1 مستطيل سلطة فواكه + 3 ام علي', '19 assorted dessert plates + 1 rectangular fruit salad + 3 Om Ali'],
+    [220, 4800, '23 طبق حلا مشكل + 2 سيلفر فواكه + 4 ام علي', '23 assorted dessert plates + 2 silver fruit trays + 4 Om Ali'],
+    [300, 5750, '26 طبق حلا مشكل + 2 سيلفر فواكه + 1 مستطيل سلطة فواكه + 5 ام علي', '26 assorted dessert plates + 2 silver fruit trays + 1 rectangular fruit salad + 5 Om Ali']
+  ];
+  // VIP packages: [guests, price SAR, what is served in Arabic, what is served in English]
+  var PKG_V = [
+    [8, 1600, '5 طبق رئيسي مقاس سمول 2 لتر + 3 مقبلات + 4 حلويات + سلطة فواكه + مشروبات غازية + مياه معدنية قزاز',
+      '5 main dishes (small, 2 L) + 3 appetizers + 4 desserts + fruit salad + soft drinks + bottled mineral water'],
+    [9, 1800, '6 طبق رئيسي مقاس سمول 2 لتر + 3 مقبلات + 4 حلويات + سلطة فواكه + مشروبات غازية + مياه معدنية قزاز',
+      '6 main dishes (small, 2 L) + 3 appetizers + 4 desserts + fruit salad + soft drinks + bottled mineral water'],
+    [15, 2300, '4 طبق رئيسي مقاس 4 لتر + 1 سخان ام علي + 5 سلطة + 5 حلا + مشروبات غازية بحسب العدد + مياه بحسب العدد',
+      '4 main dishes (4 L) + 1 Om Ali heater + 5 salads + 5 desserts + soft drinks (by number of guests) + water (by number of guests)'],
+    [20, 2800, '5 طبق رئيسي مقاس 4 لتر + 1 سخان ام علي + 6 سلطة + 6 حلا + مشروبات غازية بحسب العدد + مياه بحسب العدد',
+      '5 main dishes (4 L) + 1 Om Ali heater + 6 salads + 6 desserts + soft drinks (by number of guests) + water (by number of guests)']
+  ];
+  var pkgBox = document.getElementById('pkgBox'), pkgSel = form.elements['package'], bufSel = form.elements['buffet'], pkgInfo = document.getElementById('pkgInfo');
+  function pkgFind(code) {
+    var n = +code.slice(1), p = null;
+    ({ D: PKG_D, V: PKG_V }[code.charAt(0)] || PKG_B).forEach(function (x) { if (x[0] === n) p = x; });
+    return p;
+  }
+  // "25 guests – SAR 3,250 – 6 main-dish heaters (4 L) + 7 cold appetizers + ..."  (full = also say "Dessert buffet" for dessert-only ones)
+  function pkgLabel(code, l, full) {
+    var k = code.charAt(0), d = k === 'D', n = +code.slice(1), p = pkgFind(code), ar = l === 'ar';
+    if (!p) return '';
+    var money = p[1].toLocaleString('en-US'), what;
+    if (d || k === 'V') what = ar ? p[2] : p[3];
+    else if (ar) what = p[2] + ' سخانات اطباق رئيسية حجم ' + p[3] + ' لتر + ' + p[4] + ' مقبلات باردة + ' + p[5] + ' حلا + الماء والمشروبات الغازية' + (p[6] ? ' + سلطة فواكه سيلفر' : '');
+    else what = p[2] + ' main-dish heaters (' + p[3] + ' L) + ' + p[4] + ' cold appetizers + ' + p[5] + ' desserts + water and soft drinks' + (p[6] ? ' + silver fruit salad' : '');
+    if (ar) return (d && full ? 'بوفيه حلا – ' : '') + n + (n <= 10 ? ' أشخاص – ' : ' شخص – ') + money + ' ريال – ' + what;
+    return (d && full ? 'Dessert buffet – ' : '') + n + ' guests – SAR ' + money + ' – ' + what;
+  }
+  // the closed dropdown cuts long text short, so the chosen package is also written out in full under it
+  function updInfo() {
+    var v = pkgSel.value;
+    pkgInfo.textContent = v ? pkgLabel(v, lang, true) : '';
+    pkgInfo.hidden = !v || pkgBox.hidden;
+    var p = v ? pkgFind(v) : null, shown = !!p && !pkgBox.hidden;
+    document.getElementById('pkgPrice').value = shown ? p[1].toLocaleString('en-US') : '';
+    document.getElementById('priceBox').hidden = !shown;
+  }
+  // choosing a package fills in the number of guests (the customer can still change it)
+  pkgSel.addEventListener('change', function () {
+    var p = pkgSel.value ? pkgFind(pkgSel.value) : null;
+    if (p) form.elements['guests'].value = p[0];
+    updInfo();
+  });
+  function buildPkg() {
+    var keep = pkgSel.value;
+    while (pkgSel.options.length > 1) pkgSel.remove(1);
+    var groups = bufSel.value === 'VIP' ? [['pkgVip', PKG_V, 'V']] : [['pkgBuf', PKG_B, 'B'], ['pkgDes', PKG_D, 'D']];
+    groups.forEach(function (g) {
+      var og = document.createElement('optgroup'); og.label = t(g[0]);
+      g[1].forEach(function (p) {
+        var o = document.createElement('option'); o.value = g[2] + p[0]; o.textContent = pkgLabel(o.value, lang, false); og.appendChild(o);
+      });
+      pkgSel.appendChild(og);
+    });
+    pkgSel.value = keep; updInfo();
+  }
+  // the package list only appears (and is only required) for the Ordinary Buffet
+  function togglePkg() {
+    var on = bufSel.value === 'Ordinary' || bufSel.value === 'VIP';
+    pkgBox.hidden = !on; pkgSel.disabled = !on;
+    form.elements['guests'].min = bufSel.value === 'VIP' ? 8 : 10; // VIP packages start at 8 guests
+    if (on) buildPkg(); else pkgSel.value = '';
+    updInfo();
+  }
+  bufSel.addEventListener('change', togglePkg);
+
   function setLang(l) {
     lang = l;
     var h = document.documentElement;
     h.lang = l; h.dir = l === 'ar' ? 'rtl' : 'ltr';
     textNodes.forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+    buildPkg();
     phNodes.forEach(function (el) { el.setAttribute('placeholder', t(el.dataset.i18nPh)); });
     document.title = t('title');
     btn.textContent = t('langBtn');
     btn.setAttribute('aria-label', t('ariaLang'));
-    var tl = document.getElementById('termsLink'); if (tl) tl.href = 'terms.html?lang=' + l;
+    var tl = document.getElementById('termsLink'); if (tl) tl.href = 'terms.html?lang=' + l + '#conditions';
     if (cal.value === 'H') renderHijri();
     refreshDate();
     if (typeof trackShow === 'function' && trackData) trackShow();
@@ -217,8 +302,10 @@
       [t('sId'), id.charAt(0) + '••••••' + id.slice(-3)],
       [t('sWhen'), when], [t('sWhere'), place],
       [t('sEvent'), label('type') + ' · ' + f.get('guests') + ' ' + t('guestsWord')],
-      [t('sFood'), label('food')]
+      [t('sFood'), label('food')],
+      [t('sBuffet'), label('buffet')]
     ];
+    if (f.get('package')) rows.push([t('sPackage'), pkgLabel(String(f.get('package')), lang, true)]);
     sum.innerHTML = '';
     rows.forEach(function (r) {
       var dt = document.createElement('dt'), dd = document.createElement('dd');
@@ -234,6 +321,12 @@
     var cfg = window.SUPABASE_CONFIG || {};
     if (!cfg.url || !cfg.key || /YOUR_/.test(cfg.key)) { showErr('errConfig'); return; }
     var f = new FormData(form), d = chosenDate();
+    // the booking record has no buffet column yet, so the choice is written at the top of the notes staff see
+    function buffetNote(v) {
+      var s = 'Buffet type / نوع البوفيه: ' + (v === 'VIP' ? 'VIP Buffet / بوفيه VIP' : 'Ordinary Buffet / بوفيه عادي'), p = f.get('package');
+      if (p) s += '\nPackage / الباقة: ' + pkgLabel(String(p), 'en', true) + ' / ' + pkgLabel(String(p), 'ar', true);
+      return s;
+    }
     var payload = {
       full_name: f.get('name'), phone: f.get('phone'), national_id: f.get('idno'),
       calendar_type: cal.value === 'G' ? 'gregorian' : 'hijri',
@@ -241,7 +334,7 @@
       hijri_date: hijriStr(d), event_time: f.get('time'),
       address: f.get('address'), city: f.get('city'), postal_code: f.get('postal'),
       event_type: f.get('type'), guests: parseInt(f.get('guests'), 10), menu: f.get('food'),
-      notes: f.get('notes'), language: lang
+      notes: buffetNote(f.get('buffet')) + (f.get('notes') ? '\n' + f.get('notes') : ''), language: lang
     };
     var headers = { 'Content-Type': 'application/json', apikey: cfg.key };
     if (cfg.key.indexOf('eyJ') === 0) headers.Authorization = 'Bearer ' + cfg.key; // legacy anon (JWT) keys only
@@ -254,11 +347,11 @@
   });
 
   document.getElementById('again').addEventListener('click', function () {
-    form.reset(); clearDraft(); setCal(); form.style.display = ''; box.classList.remove('show');
+    form.reset(); clearDraft(); togglePkg(); setCal(); form.style.display = ''; box.classList.remove('show');
   });
 
   // ----- Keep the customer's details while they look at the price list -----
-  var DRAFT = 'bookingDraft', DRAFT_FIELDS = ['name', 'phone', 'idno', 'cal', 'time', 'date', 'address', 'city', 'postal', 'type', 'guests', 'food', 'notes'];
+  var DRAFT = 'bookingDraft', DRAFT_FIELDS = ['name', 'phone', 'idno', 'buffet', 'package', 'cal', 'time', 'date', 'address', 'city', 'postal', 'type', 'guests', 'food', 'notes'];
   function saveDraft() {
     if (box.classList.contains('show')) return;
     var o = {};
@@ -272,6 +365,8 @@
     try { o = JSON.parse(sessionStorage.getItem(DRAFT) || 'null'); } catch (e) {}
     if (o) {
       DRAFT_FIELDS.forEach(function (n) { if (o[n] != null) form.elements[n].value = o[n]; });
+      togglePkg();
+      if (o['package'] != null && !pkgSel.disabled) { pkgSel.value = o['package']; updInfo(); }
       setCal();
       if (cal.value === 'H') {
         hy.value = o.hy; renderHijri(); hm.value = o.hm; renderHijri(); hd.value = o.hd; refreshDate();
@@ -418,6 +513,7 @@
   var saved = null;
   try { saved = localStorage.getItem('lang'); } catch (e) {}
   setCal();
+  buildPkg();
   restoreDraft();
   var fromUrl = (location.search.match(/[?&]lang=(ar|en)/) || [])[1];
   setLang(fromUrl || saved || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en'));

@@ -59,6 +59,31 @@
         </fieldset>
 
         <fieldset>
+          <legend data-i18n="lgBuffet">Buffet type</legend>
+          <label><span data-i18n="buffet">Choose your buffet type</span>
+            <select name="buffet" id="buffet" required>
+              <option value="" data-i18n="choose">Choose one</option>
+              <option value="Ordinary" data-i18n="buffetOrd">Ordinary Buffet</option>
+              <option value="VIP" data-i18n="buffetVip">VIP Buffet</option>
+            </select>
+          </label>
+          <label id="pkgBox" hidden><span data-i18n="pkg">Choose your package</span>
+            <select name="package" id="package" required disabled>
+              <option value="" data-i18n="choosePkg">Choose a package</option>
+            </select>
+          </label>
+          <p class="note" id="pkgInfo" aria-live="polite" hidden></p>
+          <div class="row">
+            <label><span data-i18n="guests">Number of guests</span>
+              <input name="guests" type="number" dir="ltr" min="10" max="5000" required>
+            </label>
+            <label id="priceBox" hidden><span data-i18n="pkgPrice">Package price (SAR)</span>
+              <input id="pkgPrice" dir="ltr" readonly tabindex="-1" style="font-weight:700">
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
           <legend data-i18n="lgWhen">Day and time</legend>
           <div class="row">
             <label><span data-i18n="calType">Calendar type</span>
@@ -119,24 +144,21 @@
           </div>
         </fieldset>
 
+        <a class="terms-link" id="termsLink" href="terms.html#conditions" data-i18n="termsBtn">Read the Terms and Condition First, Before you Book your Event</a>
+
         <fieldset>
           <legend data-i18n="lgEvent">Your event</legend>
-          <div class="row">
-            <label><span data-i18n="type">Event type</span>
-              <select name="type" required>
-                <option value="" data-i18n="choose">Choose one</option>
-                <option value="Wedding" data-i18n="wedding">Wedding</option>
-                <option value="Birthday" data-i18n="birthday">Birthday party</option>
-                <option value="Family" data-i18n="family">Family gathering</option>
-                <option value="Iftar" data-i18n="iftar">Ramadan iftar</option>
-                <option value="Corporate" data-i18n="corporate">Company event</option>
-                <option value="Other" data-i18n="other">Other</option>
-              </select>
-            </label>
-            <label><span data-i18n="guests">Number of guests</span>
-              <input name="guests" type="number" dir="ltr" min="10" max="5000" required>
-            </label>
-          </div>
+          <label><span data-i18n="type">Event type</span>
+            <select name="type" required>
+              <option value="" data-i18n="choose">Choose one</option>
+              <option value="Wedding" data-i18n="wedding">Wedding</option>
+              <option value="Birthday" data-i18n="birthday">Birthday party</option>
+              <option value="Family" data-i18n="family">Family gathering</option>
+              <option value="Iftar" data-i18n="iftar">Ramadan iftar</option>
+              <option value="Corporate" data-i18n="corporate">Company event</option>
+              <option value="Other" data-i18n="other">Other</option>
+            </select>
+          </label>
           <label><span data-i18n="food">Menu preference</span>
             <select name="food" required>
               <option value="" data-i18n="choose">Choose one</option>
@@ -151,7 +173,6 @@
         </fieldset>
 
         <p class="err" id="err" role="alert" hidden></p>
-        <a class="terms-link" id="termsLink" href="terms.html" data-i18n="termsBtn">Price List and Menu</a>
         <button class="go" type="submit" data-i18n="submit">Request booking</button>
         <p class="note" data-i18n="note">This is not a payment. We confirm the price after calling you.</p>
       </form>
