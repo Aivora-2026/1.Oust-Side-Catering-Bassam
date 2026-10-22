@@ -210,6 +210,53 @@
     ({ D: PKG_D, V: PKG_V }[code.charAt(0)] || PKG_B).forEach(function (x) { if (x[0] === n) p = x; });
     return p;
   }
+  // ----- Package list shown as alternating coloured boxes (a phone's own dropdown can't be coloured) -----
+  var pk = document.getElementById('pk'), pkBtn = document.getElementById('pkBtn'), pkTxt = document.getElementById('pkTxt'), pkList = document.getElementById('pkList'), pkBack = document.getElementById('pkBack');
+  function pkClose() { pkList.hidden = true; pkBack.hidden = true; pkBtn.setAttribute('aria-expanded', 'false'); }
+  function pkOpen() {
+    pkList.hidden = false; pkBack.hidden = false; pkBtn.setAttribute('aria-expanded', 'true');
+    if (getComputedStyle(pkList).position === 'absolute') {
+      // tablet / desktop: bring the field near the top and size the list to the room left on screen
+      pk.scrollIntoView({ block: 'start', behavior: 'instant' });
+      var room = window.innerHeight - pkBtn.getBoundingClientRect().bottom - 16;
+      pkList.style.maxHeight = Math.max(160, Math.min(room, 416)) + 'px';
+    } else { pkList.style.maxHeight = ''; } // phone: CSS bottom sheet
+    var on = pkList.querySelector('.pk-it.sel'); pkList.scrollTop = on ? Math.max(0, on.offsetTop - 70) : 0;
+  }
+  function pkBuild() {
+    while (pkList.firstChild) pkList.removeChild(pkList.firstChild);
+    var n = 0;
+    Array.prototype.forEach.call(pkgSel.children, function (g) {
+      if (g.tagName !== 'OPTGROUP') return;
+      var gh = document.createElement('div'); gh.className = 'pk-grp'; gh.textContent = g.label; pkList.appendChild(gh);
+      Array.prototype.forEach.call(g.children, function (o) {
+        var parts = o.textContent.split(' \u2013 '), it = document.createElement('button');
+        it.type = 'button'; it.className = 'pk-it' + (n++ % 2 ? ' alt' : ''); it.setAttribute('role', 'option'); it.setAttribute('data-v', o.value);
+        var hd = document.createElement('b'); hd.className = 'pk-h'; hd.textContent = parts.slice(0, 2).join(' \u2013 '); it.appendChild(hd);
+        if (parts.length > 2) { var dt = document.createElement('span'); dt.className = 'pk-d'; dt.textContent = parts.slice(2).join(' \u2013 '); it.appendChild(dt); }
+        it.addEventListener('click', function () {
+          pkgSel.value = o.value;
+          pkgSel.dispatchEvent(new Event('change', { bubbles: true }));
+          pkClose(); pkBtn.focus();
+        });
+        pkList.appendChild(it);
+      });
+    });
+  }
+  function pkSync() {
+    var o = pkgSel.selectedOptions && pkgSel.selectedOptions[0];
+    pkTxt.textContent = pkgSel.value && o ? o.textContent : pkgSel.options[0].textContent;
+    pkBtn.classList.toggle('has', !!pkgSel.value);
+    Array.prototype.forEach.call(pkList.querySelectorAll('.pk-it'), function (b) {
+      var on = b.getAttribute('data-v') === pkgSel.value;
+      b.classList.toggle('sel', on); b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  pkBack.addEventListener('click', pkClose);
+  pkBtn.addEventListener('click', function () { if (pkList.hidden) pkOpen(); else pkClose(); });
+  pk.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pkList.hidden) { pkClose(); pkBtn.focus(); } });
+  document.addEventListener('click', function (e) { if (!pk.contains(e.target)) pkClose(); });
+
   // "25 guests – SAR 3,250 – 6 main-dish heaters (4 L) + 7 cold appetizers + ..."  (full = also say "Dessert buffet" for dessert-only ones)
   function pkgLabel(code, l, full) {
     var k = code.charAt(0), d = k === 'D', n = +code.slice(1), p = pkgFind(code), ar = l === 'ar';
@@ -224,6 +271,7 @@
   // the closed dropdown cuts long text short, so the chosen package is also written out in full under it
   function updInfo() {
     var v = pkgSel.value;
+    pkSync();
     pkgInfo.textContent = v ? pkgLabel(v, lang, true) : '';
     pkgInfo.hidden = !v || pkgBox.hidden;
     var p = v ? pkgFind(v) : null, shown = !!p && !pkgBox.hidden;
@@ -238,7 +286,7 @@
   });
   function buildPkg() {
     var keep = pkgSel.value;
-    while (pkgSel.options.length > 1) pkgSel.remove(1);
+    while (pkgSel.children.length > 1) pkgSel.removeChild(pkgSel.lastChild);
     var groups = bufSel.value === 'VIP' ? [['pkgVip', PKG_V, 'V']] : [['pkgBuf', PKG_B, 'B'], ['pkgDes', PKG_D, 'D']];
     groups.forEach(function (g) {
       var og = document.createElement('optgroup'); og.label = t(g[0]);
@@ -247,12 +295,12 @@
       });
       pkgSel.appendChild(og);
     });
-    pkgSel.value = keep; updInfo();
+    pkgSel.value = keep; pkBuild(); updInfo();
   }
   // the package list only appears (and is only required) for the Ordinary Buffet
   function togglePkg() {
     var on = bufSel.value === 'Ordinary' || bufSel.value === 'VIP';
-    pkgBox.hidden = !on; pkgSel.disabled = !on;
+    pkgBox.hidden = !on; pkgSel.disabled = !on; if (!on) pkClose();
     form.elements['guests'].min = bufSel.value === 'VIP' ? 8 : 10; // VIP packages start at 8 guests
     if (on) buildPkg(); else pkgSel.value = '';
     updInfo();

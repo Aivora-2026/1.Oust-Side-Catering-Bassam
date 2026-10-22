@@ -67,11 +67,17 @@
               <option value="VIP" data-i18n="buffetVip">VIP Buffet</option>
             </select>
           </label>
-          <label id="pkgBox" hidden><span data-i18n="pkg">Choose your package</span>
-            <select name="package" id="package" required disabled>
-              <option value="" data-i18n="choosePkg">Choose a package</option>
-            </select>
-          </label>
+          <div class="field" id="pkgBox" hidden>
+            <span class="flabel" id="pkgLabel" data-i18n="pkg">Choose your package</span>
+            <div class="pk" id="pk">
+              <select name="package" id="package" required disabled tabindex="-1" aria-hidden="true">
+                <option value="" data-i18n="choosePkg">Choose a package</option>
+              </select>
+              <button type="button" class="pk-btn" id="pkBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="pkgLabel"><span id="pkTxt"></span></button>
+              <div class="pk-back" id="pkBack" hidden></div>
+              <div class="pk-list" id="pkList" role="listbox" hidden></div>
+            </div>
+          </div>
           <p class="note" id="pkgInfo" aria-live="polite" hidden></p>
           <div class="row">
             <label><span data-i18n="guests">Number of guests</span>
