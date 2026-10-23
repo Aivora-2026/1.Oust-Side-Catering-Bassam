@@ -3,12 +3,12 @@
     en: {
       title: 'Terms and Conditions – Qalat Al-Shahba Restaurants',
       brand: 'Qalat Al-Shahba Restaurants', langBtn: 'العربية', ariaLang: 'Switch language', back: '\u2190 Back to booking',
-      hTerms: 'Terms and conditions to know before booking',
+      hTerms: 'Terms to know before booking',
       terms: [
-        'The buffet does not include dining tables and chairs. A table set with 6 chairs starts from SAR 115 up to SAR 230 per table.',
+        'The Silver Buffet does not include dining tables and chairs. A table set with 6 chairs starts from SAR 115 up to SAR 230 per table.',
         'For large buffets, some dishes may be repeated.',
         'Each buffet has a different heater size, from 4 litres up to 9 litres per heater, depending on the agreed number of guests.',
-        'The dishes are international. The dishes are chosen from the menu according to the customer\u2019s preference.',
+        'The dishes are international. The dishes are chosen from the daily menu, which is set by the chef.',
         'An order is confirmed only by transferring the deposit. Otherwise it is considered cancelled.',
         'Setting up the buffet at the venue takes from one and a half to two hours.',
         'A booking cannot be cancelled after it is confirmed. The customer may postpone it by up to one year at most.',
@@ -22,12 +22,12 @@
     ar: {
       title: 'الشروط والأحكام – مطاعم قلعة الشهباء',
       brand: 'مطاعم قلعة الشهباء', langBtn: 'English', ariaLang: 'تغيير اللغة', back: 'العودة إلى الحجز \u2192',
-      hTerms: 'بنود وشروط يجب معرفتها قبل الحجز',
+      hTerms: 'بنود يجب معرفتها قبل الحجز',
       terms: [
-        'البوفيه لا يشمل طاولات الطعام والكراسي، ويبدأ سعر الطاولة منسقة مع 6 كراسي من 115 ريال إلى 230 ريال للطاولة الواحدة.',
+        'البوفيه الفضي لا يشمل طاولات الطعام والكراسي، ويبدأ سعر الطاولة منسقة مع 6 كراسي من 115 ريال إلى 230 ريال للطاولة الواحدة.',
         'إذا كان البوفيه كبيرًا قد تتكرر بعض الأصناف.',
         'لكل بوفيه حجم سخانات مختلف يبدأ من 4 لتر إلى 9 لتر للسخان الواحد، بناءً على عدد الأشخاص المتفق عليه.',
-        'الأصناف انترناشونال، ويتم اختيار الأصناف من المنيو حسب رغبة العميل.',
+        'الأصناف انترنشونال، ويتم اختيار الأصناف من المنيو اليومي الذي يتم تحديده من قبل الشيف.',
         'اعتماد الطلب يكون بتحويل العربون، خلاف ذلك يُعد لاغيًا.',
         'يستغرق تجهيز البوفيه في الموقع من ساعة ونصف إلى ساعتين.',
         'لا يتم إلغاء الحجز بعد الاعتماد، ويحق للعميل التأجيل إلى حد سنة كحد أقصى.',
