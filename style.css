@@ -201,3 +201,12 @@ html[lang="ar"] .pk-grp{font-family:"Tajawal",sans-serif}
 @media (max-width:1024px){.hero{gap:2rem}}
 @media (min-width:1400px){.wrap{max-width:1240px}}
 #pkgInfo{margin:.6rem 0 1rem}
+
+/* ---- terms gate ---- */
+.terms-gate{margin:0 0 1.4rem}
+.terms-gate .terms-link{margin-bottom:.8rem}
+.accept{display:flex;align-items:center;margin:0 0 .5rem;padding:.8rem 1rem;font-size:1rem;font-weight:700;background:var(--surface);border:2px solid var(--leaf);border-radius:10px;cursor:pointer}
+.accept input[type="checkbox"]{-webkit-appearance:checkbox;appearance:auto;display:inline-block;flex:none;width:1.5rem;height:1.5rem;margin:0;margin-inline-end:.8rem;padding:0;accent-color:var(--leaf);cursor:pointer}
+.terms-gate .note{margin:.3rem 0 0;font-weight:600}
+fieldset.gated[disabled]{opacity:.45}
+form.locked button.go:disabled{cursor:not-allowed}

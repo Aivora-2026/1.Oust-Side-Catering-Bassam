@@ -23,7 +23,7 @@
     day: 'اليوم',
     month: 'الشهر',
     year: 'السنة',
-    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفيه VIP', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات VIP', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
+    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفية الجمعات الصغيرة - الباحة فقط', buffetCoffee: 'بوفيه كوفي بريك', buffetKing: 'بوفيه VIP كينج', accept: 'أوافق على الشروط والأحكام', acceptHint: 'ضع علامة (أوافق) لمتابعة الحجز.', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات الجمعات الصغيرة', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
     lgWhen: 'اليوم والوقت',
     date: 'تاريخ المناسبة',
     time: 'وقت تقديم الطعام',
@@ -99,7 +99,7 @@
     agNotReady: 'Your agreement is not ready yet. We will contact you once your booking details are completed.',
     agMany: 'Too many wrong attempts. Please try again in 15 minutes.', agPopup: 'Please allow pop-ups for this page, then try again.',
     sName: 'Name', sPhone: 'Mobile', sId: 'Saudi ID / Iqama', sWhen: 'Day and time', sWhere: 'Location',
-    sEvent: 'Event', sFood: 'Menu', sBuffet: 'Buffet type', pkgBuf: 'Buffet packages', pkgDes: 'Dessert-only buffets', pkgVip: 'VIP packages', sPackage: 'Package', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
+    sEvent: 'Event', sFood: 'Menu', sBuffet: 'Buffet type', pkgBuf: 'Buffet packages', pkgDes: 'Dessert-only buffets', pkgVip: 'Small Buffet packages', sPackage: 'Package', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
     eqH: 'Hijri date: ', eqG: 'Gregorian date: ', title: document.title };
 
   var textNodes = document.querySelectorAll('[data-i18n]');
@@ -179,6 +179,7 @@
   // ----- Ordinary Buffet packages (from the price list) -----
   // [guests, price SAR, main-dish heaters, heater size (litres), cold appetizers, desserts, silver fruit salad included]
   var PKG_B = [
+    [15, 2300, null], [20, 2800, null], // price only, no item details given yet
     [25, 3250, 6, 4, 7, 6, 0], [30, 3600, 7, 4, 8, 7, 0], [35, 3900, 8, 4, 9, 8, 1], [40, 4600, 9, 4, 8, 9, 0], [50, 5200, 8, 6, 8, 8, 0],
     [55, 5500, 8, 6, 8, 9, 0], [60, 5900, 9, 6, 8, 9, 0], [70, 6500, 9, 6, 9, 9, 0], [80, 6900, 10, 6, 7, 8, 0], [90, 7500, 8, 9, 7, 8, 0],
     [100, 7900, 9, 9, 8, 8, 0], [120, 8500, 10, 9, 8, 9, 0], [140, 9200, 11, 9, 9, 9, 0], [160, 9900, 12, 9, 10, 10, 0],
@@ -263,10 +264,11 @@
     if (!p) return '';
     var money = p[1].toLocaleString('en-US'), what;
     if (d || k === 'V') what = ar ? p[2] : p[3];
+    else if (p[2] == null) what = '';
     else if (ar) what = p[2] + ' سخانات اطباق رئيسية حجم ' + p[3] + ' لتر + ' + p[4] + ' مقبلات باردة + ' + p[5] + ' حلا + الماء والمشروبات الغازية' + (p[6] ? ' + سلطة فواكه سيلفر' : '');
     else what = p[2] + ' main-dish heaters (' + p[3] + ' L) + ' + p[4] + ' cold appetizers + ' + p[5] + ' desserts + water and soft drinks' + (p[6] ? ' + silver fruit salad' : '');
-    if (ar) return (d && full ? 'بوفيه حلا – ' : '') + n + (n <= 10 ? ' أشخاص – ' : ' شخص – ') + money + ' ريال – ' + what;
-    return (d && full ? 'Dessert buffet – ' : '') + n + ' guests – SAR ' + money + ' – ' + what;
+    if (ar) return (d && full ? 'بوفيه حلا – ' : '') + n + (n <= 10 ? ' أشخاص – ' : ' شخص – ') + money + ' ريال' + (what ? ' – ' + what : '');
+    return (d && full ? 'Dessert buffet – ' : '') + n + ' guests – SAR ' + money + (what ? ' – ' + what : '');
   }
   // the closed dropdown cuts long text short, so the chosen package is also written out in full under it
   function updInfo() {
@@ -349,8 +351,7 @@
       [t('sRef'), ref], [t('sName'), f.get('name')], [t('sPhone'), f.get('phone')],
       [t('sId'), id.charAt(0) + '••••••' + id.slice(-3)],
       [t('sWhen'), when], [t('sWhere'), place],
-      [t('sEvent'), label('type') + ' · ' + f.get('guests') + ' ' + t('guestsWord')],
-      [t('sFood'), label('food')],
+      [t('guests'), f.get('guests') + ' ' + t('guestsWord')],
       [t('sBuffet'), label('buffet')]
     ];
     if (f.get('package')) rows.push([t('sPackage'), pkgLabel(String(f.get('package')), lang, true)]);
@@ -365,13 +366,16 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (!accept.checked) return; // terms must be accepted first
     errEl.hidden = true;
     var cfg = window.SUPABASE_CONFIG || {};
     if (!cfg.url || !cfg.key || /YOUR_/.test(cfg.key)) { showErr('errConfig'); return; }
     var f = new FormData(form), d = chosenDate();
     // the booking record has no buffet column yet, so the choice is written at the top of the notes staff see
     function buffetNote(v) {
-      var s = 'Buffet type / نوع البوفيه: ' + (v === 'VIP' ? 'VIP Buffet / بوفيه VIP' : 'Ordinary Buffet / بوفيه عادي'), p = f.get('package');
+      var NAMES = { Ordinary: 'Ordinary Buffet / بوفيه عادي', VIP: 'Small Buffet only for Al-Baha / بوفية الجمعات الصغيرة - الباحة فقط',
+        Coffee: 'Coffee break Buffet / بوفيه كوفي بريك', VIPKing: 'VIP King Buffet / بوفيه VIP كينج' };
+      var s = 'Buffet type / نوع البوفيه: ' + (NAMES[v] || NAMES.Ordinary), p = f.get('package');
       if (p) s += '\nPackage / الباقة: ' + pkgLabel(String(p), 'en', true) + ' / ' + pkgLabel(String(p), 'ar', true);
       return s;
     }
@@ -381,7 +385,7 @@
       event_date: d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()),
       hijri_date: hijriStr(d), event_time: f.get('time'),
       address: f.get('address'), city: f.get('city'), postal_code: f.get('postal'),
-      event_type: f.get('type'), guests: parseInt(f.get('guests'), 10), menu: f.get('food'),
+      event_type: 'Other', guests: parseInt(f.get('guests'), 10), menu: 'Both', // these two questions were removed from the form; the booking record still expects a value
       notes: buffetNote(f.get('buffet')) + (f.get('notes') ? '\n' + f.get('notes') : ''), language: lang
     };
     var headers = { 'Content-Type': 'application/json', apikey: cfg.key };
@@ -395,11 +399,11 @@
   });
 
   document.getElementById('again').addEventListener('click', function () {
-    form.reset(); clearDraft(); togglePkg(); setCal(); form.style.display = ''; box.classList.remove('show');
+    form.reset(); clearDraft(); togglePkg(); setCal(); applyGate(); form.style.display = ''; box.classList.remove('show');
   });
 
   // ----- Keep the customer's details while they look at the price list -----
-  var DRAFT = 'bookingDraft', DRAFT_FIELDS = ['name', 'phone', 'idno', 'buffet', 'package', 'cal', 'time', 'date', 'address', 'city', 'postal', 'type', 'guests', 'food', 'notes'];
+  var DRAFT = 'bookingDraft', DRAFT_FIELDS = ['name', 'phone', 'idno', 'buffet', 'package', 'cal', 'time', 'date', 'address', 'city', 'postal', 'guests', 'notes'];
   function saveDraft() {
     if (box.classList.contains('show')) return;
     var o = {};
@@ -427,6 +431,18 @@
   }
   form.addEventListener('input', saveDraft);
   form.addEventListener('change', saveDraft);
+
+  // ----- Terms gate: everything from "Buffet type" down stays locked until "I Accept" is ticked -----
+  var accept = document.getElementById('accept'), acceptHint = document.getElementById('acceptHint'), gated = form.querySelectorAll('fieldset.gated');
+  function applyGate() {
+    var ok = accept.checked;
+    Array.prototype.forEach.call(gated, function (f) { f.disabled = !ok; });
+    go.disabled = !ok; acceptHint.hidden = ok; form.classList.toggle('locked', !ok);
+  }
+  accept.addEventListener('change', applyGate);
+  // always locked when the page is opened, refreshed, or reached with the Back button
+  window.addEventListener('pageshow', function (e) { if (e.persisted) { accept.checked = false; applyGate(); } });
+  accept.checked = false; applyGate();
 
   cal.addEventListener('change', setCal);
   dateIn.addEventListener('change', refreshDate);
