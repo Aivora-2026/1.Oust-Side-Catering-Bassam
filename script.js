@@ -23,7 +23,7 @@
     day: 'اليوم',
     month: 'الشهر',
     year: 'السنة',
-    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفية الجمعات الصغيرة - الباحة فقط', buffetCoffee: 'بوفيه كوفي بريك', buffetKing: 'بوفيه VIP كينج', accept: 'أوافق على الشروط والأحكام', acceptHint: 'ضع علامة (أوافق) لمتابعة الحجز.', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات الجمعات الصغيرة', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
+    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفية الجمعات الصغيرة - الباحة فقط', buffetCoffee: 'بوفيه كوفي بريك', buffetKing: 'بوفيه VIP ملكي', buffetSilver: 'بوفيه الفضي', accept: 'أوافق على الشروط والأحكام', acceptHint: 'ضع علامة (أوافق) لمتابعة الحجز.', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات الجمعات الصغيرة', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
     lgWhen: 'اليوم والوقت',
     date: 'تاريخ المناسبة',
     time: 'وقت تقديم الطعام',
@@ -179,7 +179,11 @@
   // ----- Ordinary Buffet packages (from the price list) -----
   // [guests, price SAR, main-dish heaters, heater size (litres), cold appetizers, desserts, silver fruit salad included]
   var PKG_B = [
-    [15, 2300, null], [20, 2800, null], // price only, no item details given yet
+    // 15 and 20 guests: described in words (text in Arabic and English) instead of heater counts
+    [15, 2300, '4 طبق رئيسي مقاس 4 لتر + 1 سخان ام علي + 5 سلطة + 5 حلا + مشروبات غازية بحسب العدد + مياه بحسب العدد',
+      '4 main dishes (4 L) + 1 Om Ali heater + 5 salads + 5 desserts + soft drinks (by number of guests) + water (by number of guests)'],
+    [20, 2800, '5 طبق رئيسي مقاس 4 لتر + 1 سخان ام علي + 6 سلطة + 6 حلا + مشروبات غازية بحسب العدد + مياه بحسب العدد',
+      '5 main dishes (4 L) + 1 Om Ali heater + 6 salads + 6 desserts + soft drinks (by number of guests) + water (by number of guests)'],
     [25, 3250, 6, 4, 7, 6, 0], [30, 3600, 7, 4, 8, 7, 0], [35, 3900, 8, 4, 9, 8, 1], [40, 4600, 9, 4, 8, 9, 0], [50, 5200, 8, 6, 8, 8, 0],
     [55, 5500, 8, 6, 8, 9, 0], [60, 5900, 9, 6, 8, 9, 0], [70, 6500, 9, 6, 9, 9, 0], [80, 6900, 10, 6, 7, 8, 0], [90, 7500, 8, 9, 7, 8, 0],
     [100, 7900, 9, 9, 8, 8, 0], [120, 8500, 10, 9, 8, 9, 0], [140, 9200, 11, 9, 9, 9, 0], [160, 9900, 12, 9, 10, 10, 0],
@@ -263,7 +267,7 @@
     var k = code.charAt(0), d = k === 'D', n = +code.slice(1), p = pkgFind(code), ar = l === 'ar';
     if (!p) return '';
     var money = p[1].toLocaleString('en-US'), what;
-    if (d || k === 'V') what = ar ? p[2] : p[3];
+    if (d || k === 'V' || typeof p[2] === 'string') what = ar ? p[2] : p[3];
     else if (p[2] == null) what = '';
     else if (ar) what = p[2] + ' سخانات اطباق رئيسية حجم ' + p[3] + ' لتر + ' + p[4] + ' مقبلات باردة + ' + p[5] + ' حلا + الماء والمشروبات الغازية' + (p[6] ? ' + سلطة فواكه سيلفر' : '');
     else what = p[2] + ' main-dish heaters (' + p[3] + ' L) + ' + p[4] + ' cold appetizers + ' + p[5] + ' desserts + water and soft drinks' + (p[6] ? ' + silver fruit salad' : '');
@@ -301,7 +305,7 @@
   }
   // the package list only appears (and is only required) for the Ordinary Buffet
   function togglePkg() {
-    var on = bufSel.value === 'Ordinary' || bufSel.value === 'VIP';
+    var on = bufSel.value === 'Ordinary' || bufSel.value === 'Silver' || bufSel.value === 'VIP'; // Silver uses the same list as Ordinary
     pkgBox.hidden = !on; pkgSel.disabled = !on; if (!on) pkClose();
     form.elements['guests'].min = bufSel.value === 'VIP' ? 8 : 10; // VIP packages start at 8 guests
     if (on) buildPkg(); else pkgSel.value = '';
@@ -374,7 +378,7 @@
     // the booking record has no buffet column yet, so the choice is written at the top of the notes staff see
     function buffetNote(v) {
       var NAMES = { Ordinary: 'Ordinary Buffet / بوفيه عادي', VIP: 'Small Buffet only for Al-Baha / بوفية الجمعات الصغيرة - الباحة فقط',
-        Coffee: 'Coffee break Buffet / بوفيه كوفي بريك', VIPKing: 'VIP King Buffet / بوفيه VIP كينج' };
+        Coffee: 'Coffee break Buffet / بوفيه كوفي بريك', VIPKing: 'VIP King Buffet / بوفيه VIP ملكي', Silver: 'Silver Buffet / بوفيه الفضي' };
       var s = 'Buffet type / نوع البوفيه: ' + (NAMES[v] || NAMES.Ordinary), p = f.get('package');
       if (p) s += '\nPackage / الباقة: ' + pkgLabel(String(p), 'en', true) + ' / ' + pkgLabel(String(p), 'ar', true);
       return s;
