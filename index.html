@@ -74,6 +74,7 @@
               <option value="Coffee" data-i18n="buffetCoffee">Coffee break Buffet</option>
               <option value="VIPKing" data-i18n="buffetKing">VIP King Buffet</option>
               <option value="Silver" data-i18n="buffetSilver">Silver Buffet</option>
+              <option value="Breakfast" data-i18n="buffetBreakfast">Breakfast Buffet</option>
             </select>
           </label>
           <div class="field" id="pkgBox" hidden>
@@ -88,12 +89,21 @@
             </div>
           </div>
           <p class="note" id="pkgInfo" aria-live="polite" hidden></p>
+          <div class="field" id="cbBox" hidden>
+            <span class="flabel" id="cbLabel" data-i18n="cb">Choose your menu items</span>
+            <div class="pk" id="cb">
+              <button type="button" class="pk-btn" id="cbBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cbLabel"><span id="cbTxt"></span></button>
+              <div class="pk-back" id="cbBack" hidden></div>
+              <div class="pk-list" id="cbList" role="listbox" aria-multiselectable="true" hidden></div>
+            </div>
+            <p class="note" id="cbInfo" aria-live="polite" hidden></p>
+          </div>
           <div class="row">
             <label><span data-i18n="guests">Number of guests</span>
               <input name="guests" type="number" dir="ltr" min="10" max="5000" required>
             </label>
-            <label id="priceBox" hidden><span data-i18n="pkgPrice">Package price (SAR)</span>
-              <input id="pkgPrice" dir="ltr" readonly tabindex="-1" style="font-weight:700">
+            <label id="priceBox"><span data-i18n="pkgPrice">Package price (SAR)</span>
+              <input id="pkgPrice" dir="ltr" readonly tabindex="-1" placeholder="—" style="font-weight:700">
             </label>
           </div>
         </fieldset>

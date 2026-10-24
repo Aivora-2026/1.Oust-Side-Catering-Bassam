@@ -210,3 +210,18 @@ html[lang="ar"] .pk-grp{font-family:"Tajawal",sans-serif}
 .terms-gate .note{margin:.3rem 0 0;font-weight:600}
 fieldset.gated[disabled]{opacity:.45}
 form.locked button.go:disabled{cursor:not-allowed}
+
+/* ---- coffee break menu picker (ticks inside the same coloured boxes) ---- */
+.cb-it{display:flex;align-items:center}
+.cb-txt{display:block;min-width:0}
+.cb-chk{flex:none;display:flex;align-items:center;justify-content:center;width:1.5rem;height:1.5rem;margin-inline-end:.8rem;background:#fff;border:2px solid var(--leaf);border-radius:6px}
+.cb-it.sel .cb-chk{background:var(--leaf)}
+.cb-it.sel .cb-chk::after{content:"";width:.4rem;height:.8rem;margin-top:-.15rem;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.cb-done{position:sticky;bottom:0;width:100%;margin-top:.3rem;min-height:48px;box-shadow:0 -8px 10px #fff}
+#cbInfo{margin:.6rem 0 1rem;line-height:1.6}
+
+/* word shown beside guests and price on the Small Buffet packages */
+.pk-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.pk-tag{flex:none;padding:.15rem .7rem;font-size:.85rem;font-weight:800;border:1.5px solid;border-radius:999px;white-space:nowrap}
+.pk-tag-VIP{background:#F5BE2E;border-color:#D9A21B;color:#16261E}
+.pk-tag-Ordinary{background:#fff;border-color:var(--leaf);color:var(--leaf)}

@@ -23,7 +23,7 @@
     day: 'اليوم',
     month: 'الشهر',
     year: 'السنة',
-    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفية الجمعات الصغيرة - الباحة فقط', buffetCoffee: 'بوفيه كوفي بريك', buffetKing: 'بوفيه VIP ملكي', buffetSilver: 'بوفيه الفضي', accept: 'أوافق على الشروط والأحكام', acceptHint: 'ضع علامة (أوافق) لمتابعة الحجز.', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات الجمعات الصغيرة', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
+    lgBuffet: 'نوع البوفيه', buffet: 'اختر نوع البوفيه', buffetOrd: 'بوفيه عادي', buffetVip: 'بوفية الجمعات الصغيرة - الباحة فقط', buffetCoffee: 'بوفيه كوفي بريك', buffetKing: 'بوفيه VIP ملكي', buffetSilver: 'بوفيه الفضي', buffetBreakfast: 'بوفيه فطور', accept: 'أوافق على الشروط والأحكام', cb: 'اختر أصناف المنيو', cbPick: 'اختر الأصناف', cbSelected: 'أصناف مختارة', cbOne: 'صنف واحد مختار', cbDone: 'تم', cbHead: 'منيو الكوفي بريك', sCoffee: 'أصناف المنيو', acceptHint: 'ضع علامة (أوافق) لمتابعة الحجز.', sBuffet: 'نوع البوفيه', pkg: 'اختر الباقة', choosePkg: 'اختر الباقة', pkgBuf: 'باقات البوفيه', pkgDes: 'بوفيهات الحلا فقط', pkgVip: 'باقات الجمعات الصغيرة', sPackage: 'الباقة', pkgPrice: 'سعر الباقة (ريال)',
     lgWhen: 'اليوم والوقت',
     date: 'تاريخ المناسبة',
     time: 'وقت تقديم الطعام',
@@ -99,7 +99,7 @@
     agNotReady: 'Your agreement is not ready yet. We will contact you once your booking details are completed.',
     agMany: 'Too many wrong attempts. Please try again in 15 minutes.', agPopup: 'Please allow pop-ups for this page, then try again.',
     sName: 'Name', sPhone: 'Mobile', sId: 'Saudi ID / Iqama', sWhen: 'Day and time', sWhere: 'Location',
-    sEvent: 'Event', sFood: 'Menu', sBuffet: 'Buffet type', pkgBuf: 'Buffet packages', pkgDes: 'Dessert-only buffets', pkgVip: 'Small Buffet packages', sPackage: 'Package', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
+    sEvent: 'Event', sFood: 'Menu', sBuffet: 'Buffet type', pkgBuf: 'Buffet packages', pkgDes: 'Dessert-only buffets', pkgVip: 'Small Buffet packages', sPackage: 'Package', cbPick: 'Choose items', cbSelected: 'items selected', cbOne: '1 item selected', cbDone: 'Done', cbHead: 'Coffee break menu', sCoffee: 'Menu items', sRef: 'Booking number', sending: 'Sending...', errSend: 'We could not send your request. Check your connection and try again, or call us.', errConfig: 'The database is not connected yet. Add your Supabase key in index.html.', guestsWord: 'guests', ariaLang: 'Switch language', langBtn: 'العربية',
     eqH: 'Hijri date: ', eqG: 'Gregorian date: ', title: document.title };
 
   var textNodes = document.querySelectorAll('[data-i18n]');
@@ -201,15 +201,21 @@
   // VIP packages: [guests, price SAR, what is served in Arabic, what is served in English]
   var PKG_V = [
     [8, 1600, '5 طبق رئيسي مقاس سمول 2 لتر + 3 مقبلات + 4 حلويات + سلطة فواكه + مشروبات غازية + مياه معدنية قزاز',
-      '5 main dishes (small, 2 L) + 3 appetizers + 4 desserts + fruit salad + soft drinks + bottled mineral water'],
+      '5 main dishes (small, 2 L) + 3 appetizers + 4 desserts + fruit salad + soft drinks + bottled mineral water', 'VIP'],
     [9, 1800, '6 طبق رئيسي مقاس سمول 2 لتر + 3 مقبلات + 4 حلويات + سلطة فواكه + مشروبات غازية + مياه معدنية قزاز',
-      '6 main dishes (small, 2 L) + 3 appetizers + 4 desserts + fruit salad + soft drinks + bottled mineral water'],
+      '6 main dishes (small, 2 L) + 3 appetizers + 4 desserts + fruit salad + soft drinks + bottled mineral water', 'VIP'],
     [15, 2300, '4 طبق رئيسي مقاس 4 لتر + 1 سخان ام علي + 5 سلطة + 5 حلا + مشروبات غازية بحسب العدد + مياه بحسب العدد',
-      '4 main dishes (4 L) + 1 Om Ali heater + 5 salads + 5 desserts + soft drinks (by number of guests) + water (by number of guests)'],
+      '4 main dishes (4 L) + 1 Om Ali heater + 5 salads + 5 desserts + soft drinks (by number of guests) + water (by number of guests)', 'Ordinary'],
     [20, 2800, '5 طبق رئيسي مقاس 4 لتر + 1 سخان ام علي + 6 سلطة + 6 حلا + مشروبات غازية بحسب العدد + مياه بحسب العدد',
-      '5 main dishes (4 L) + 1 Om Ali heater + 6 salads + 6 desserts + soft drinks (by number of guests) + water (by number of guests)']
+      '5 main dishes (4 L) + 1 Om Ali heater + 6 salads + 6 desserts + soft drinks (by number of guests) + water (by number of guests)', 'Ordinary']
   ];
   var pkgBox = document.getElementById('pkgBox'), pkgSel = form.elements['package'], bufSel = form.elements['buffet'], pkgInfo = document.getElementById('pkgInfo');
+  // the word shown beside guests and price on the Small Buffet packages
+  var TAGS = { VIP: ['بوفيه VIP', 'VIP Buffet'], Ordinary: ['بوفيه عادي', 'Ordinary Buffet'] };
+  function pkgTag(code, l) {
+    var p = code.charAt(0) === 'V' ? pkgFind(code) : null;
+    return p && TAGS[p[4]] ? TAGS[p[4]][l === 'ar' ? 0 : 1] : '';
+  }
   function pkgFind(code) {
     var n = +code.slice(1), p = null;
     ({ D: PKG_D, V: PKG_V }[code.charAt(0)] || PKG_B).forEach(function (x) { if (x[0] === n) p = x; });
@@ -237,7 +243,10 @@
       Array.prototype.forEach.call(g.children, function (o) {
         var parts = o.textContent.split(' \u2013 '), it = document.createElement('button');
         it.type = 'button'; it.className = 'pk-it' + (n++ % 2 ? ' alt' : ''); it.setAttribute('role', 'option'); it.setAttribute('data-v', o.value);
-        var hd = document.createElement('b'); hd.className = 'pk-h'; hd.textContent = parts.slice(0, 2).join(' \u2013 '); it.appendChild(hd);
+        var top = document.createElement('div'), hd = document.createElement('b'), tg = pkgTag(o.value, lang); top.className = 'pk-top';
+        hd.className = 'pk-h'; hd.textContent = parts.slice(0, 2).join(' \u2013 '); top.appendChild(hd);
+        if (tg) { var tb = document.createElement('span'); tb.className = 'pk-tag pk-tag-' + pkgFind(o.value)[4]; tb.textContent = tg; top.appendChild(tb); }
+        it.appendChild(top);
         if (parts.length > 2) { var dt = document.createElement('span'); dt.className = 'pk-d'; dt.textContent = parts.slice(2).join(' \u2013 '); it.appendChild(dt); }
         it.addEventListener('click', function () {
           pkgSel.value = o.value;
@@ -271,8 +280,8 @@
     else if (p[2] == null) what = '';
     else if (ar) what = p[2] + ' سخانات اطباق رئيسية حجم ' + p[3] + ' لتر + ' + p[4] + ' مقبلات باردة + ' + p[5] + ' حلا + الماء والمشروبات الغازية' + (p[6] ? ' + سلطة فواكه سيلفر' : '');
     else what = p[2] + ' main-dish heaters (' + p[3] + ' L) + ' + p[4] + ' cold appetizers + ' + p[5] + ' desserts + water and soft drinks' + (p[6] ? ' + silver fruit salad' : '');
-    if (ar) return (d && full ? 'بوفيه حلا – ' : '') + n + (n <= 10 ? ' أشخاص – ' : ' شخص – ') + money + ' ريال' + (what ? ' – ' + what : '');
-    return (d && full ? 'Dessert buffet – ' : '') + n + ' guests – SAR ' + money + (what ? ' – ' + what : '');
+    if (ar) return (d && full ? 'بوفيه حلا – ' : '') + n + (n <= 10 ? ' أشخاص – ' : ' شخص – ') + money + ' ريال' + (full && pkgTag(code, l) ? ' – ' + pkgTag(code, l) : '') + (what ? ' – ' + what : '');
+    return (d && full ? 'Dessert buffet – ' : '') + n + ' guests – SAR ' + money + (full && pkgTag(code, l) ? ' – ' + pkgTag(code, l) : '') + (what ? ' – ' + what : '');
   }
   // the closed dropdown cuts long text short, so the chosen package is also written out in full under it
   function updInfo() {
@@ -281,8 +290,7 @@
     pkgInfo.textContent = v ? pkgLabel(v, lang, true) : '';
     pkgInfo.hidden = !v || pkgBox.hidden;
     var p = v ? pkgFind(v) : null, shown = !!p && !pkgBox.hidden;
-    document.getElementById('pkgPrice').value = shown ? p[1].toLocaleString('en-US') : '';
-    document.getElementById('priceBox').hidden = !shown;
+    document.getElementById('pkgPrice').value = shown ? p[1].toLocaleString('en-US') : ''; // the box is always visible, empty until a package is chosen
   }
   // choosing a package fills in the number of guests (the customer can still change it)
   pkgSel.addEventListener('change', function () {
@@ -307,18 +315,123 @@
   function togglePkg() {
     var on = bufSel.value === 'Ordinary' || bufSel.value === 'Silver' || bufSel.value === 'VIP'; // Silver uses the same list as Ordinary
     pkgBox.hidden = !on; pkgSel.disabled = !on; if (!on) pkClose();
+    cbBox.hidden = !MENUS[bufSel.value]; if (cbBox.hidden) cbClose(); else cbBuild(); // Coffee break and Breakfast show a menu to tick
     form.elements['guests'].min = bufSel.value === 'VIP' ? 8 : 10; // VIP packages start at 8 guests
     if (on) buildPkg(); else pkgSel.value = '';
     updInfo();
   }
   bufSel.addEventListener('change', togglePkg);
 
+  // ----- Menu pickers (Coffee break, Breakfast): tick the items you want; the lists come from the restaurant's PDF menus -----
+  var MENUS = {
+    Coffee: {
+      head: ['منيو الكوفي بريك', 'Coffee break menu'], notes: ['أصناف الكوفي بريك', 'Coffee break items'],
+      groups: [{ items: [
+        ['ساندوتش دجاج', 'Chicken sandwich'], ['ساندوتش طماطم بالجبنه', 'Tomato and cheese sandwich'], ['ساندوتش تونه', 'Tuna sandwich'],
+        ['رول بيض بالجبنه', 'Egg and cheese roll'], ['بيتزا دجاج صغير', 'Mini chicken pizza'], ['رول سجق', 'Sausage pastry roll'],
+        ['ساندوتش جبنه بالمربي', 'Jam and cheese sandwich'], ['برجر صغير', 'Mini burger'], ['فطائر مشكل', 'Mixed fatayer'],
+        ['كرواسون صغير', 'Mini croissant'], ['كب كيك', 'Cupcakes'], ['كيكة موز', 'Banana cake'], ['دونات صغيرة', 'Mini doughnuts'],
+        ['بسكويت مشكل', 'Assorted biscuits'], ['سويس رول', 'Swiss roll'], ['بيتي فور', 'Petit four'], ['ساندوتش موزرلا', 'Mozzarella sandwich'],
+        ['ساندوتش لبنه عسل', 'Labneh and honey sandwich'], ['كب ميني', 'Mini kibbeh'], ['سبرين رول', 'Spring roll'],
+        ['سمبوسه دجاج', 'Chicken samosa'], ['سمبوسه لحم', 'Lamb samosa'], ['كيكة الزبدة', 'Butter cake'], ['كيكه المافن', 'Muffin cake'],
+        ['لفائف القرفة', 'Cinnamon rolls'], ['كوفي كيك', 'Coffee cake'], ['بطاطس شبس', 'Potato chips'], ['رقائق الزرة', 'Cornflakes'],
+        ['سلطه فواكه', 'Fruit salad'], ['قهوة عربي', 'Arabic coffee'], ['قهوة تركي', 'Turkish coffee'], ['شاي نسكوفية', 'Tea and Nescafe'],
+        ['ماء', 'Water'], ['عصير', 'Juice']
+      ] }]
+    },
+    Breakfast: {
+      head: ['منيو الإفطار', 'Breakfast menu'], notes: ['أصناف الإفطار', 'Breakfast items'],
+      groups: [
+        { ar: 'المقبلات الباردة', en: 'Cold appetizers', items: [
+          ['سلطة خضار مشكل', 'Mixed vegetable salad'], ['لبنة مع زيت الزيتون', 'Labneh with olive oil'], ['زيتون مشكل', 'Mixed olives'],
+          ['حلاوة بالطحينية', 'Halawa with tahini'], ['اجبان مشكلة', 'Mixed cheeses'], ['مربى', 'Jam'], ['زبده', 'Butter'], ['حمص', 'Hummus'],
+          ['سلطة بطاطس إيطالي مع البيض المسلوق', 'Italian potato salad with boiled eggs'] ] },
+        { ar: 'المقبلات الساخنة', en: 'Hot appetizers', items: [
+          ['سبنجرول', 'Spring roll'], ['سمبوسة بالجبن', 'Cheese samosa'], ['كبة ميني', 'Mini kibbeh'] ] },
+        { ar: 'الاطباق الرئيسية', en: 'Main dishes', items: [
+          ['بيض مسلوق', 'Boiled eggs'], ['فول سفير', 'Fava beans'], ['شكشوكة', 'Shakshouka'], ['بطاطس مشوي', 'Roasted potatoes'],
+          ['مقلقل لحم', 'Meat stir-fry'], ['فطاير مشكلة', 'Mixed pies'] ] },
+        { ar: 'المخبوزات', en: 'Baked goods', items: [
+          ['كرواسون', 'Croissant'], ['دونات', 'Donut'], ['خبز شامي', 'Shami bread'], ['خبز بر', 'Wholemeal bread'], ['خبز توست', 'Toast bread'] ] },
+        { ar: 'الحلويات', en: 'Sweets', items: [
+          ['سلطة فواكه', 'Fruit salad'], ['بان كيك', 'Pancakes'], ['كورن فليكس مع الحليب', 'Corn flakes with milk'], ['مهلبية', 'Custard'],
+          ['كريم كرميل', 'Crème caramel'], ['شوفان بالحليب', 'Oatmeal with milk'], ['كيكة موز', 'Banana cake'], ['ام علي', 'Umm Ali'] ] },
+        { ar: 'المشروبات', en: 'Drinks', items: [
+          ['نسكافيه', 'Nescafe'], ['شاي', 'Tea'], ['شاي بالحليب', 'Milk tea'], ['عصير مشكل', 'Mixed juice'] ] }
+      ]
+    }
+  };
+  var cbSel = {}, cbBox = document.getElementById('cbBox'), cbBtn = document.getElementById('cbBtn'), cbTxt = document.getElementById('cbTxt'),
+      cbList = document.getElementById('cbList'), cbBack = document.getElementById('cbBack'), cbInfo = document.getElementById('cbInfo'), cbWrap = document.getElementById('cb');
+  // every item gets an id like "Breakfast:12" so picks for each menu are kept apart
+  function cbFlat(key) {
+    var out = [], m = MENUS[key], n = 0;
+    if (m) m.groups.forEach(function (g) { g.items.forEach(function (it) { out.push({ id: key + ':' + (n++), ar: it[0], en: it[1] }); }); });
+    return out;
+  }
+  function cbKey() { return MENUS[bufSel.value] ? bufSel.value : null; }
+  function cbNames(l, key) {
+    key = key || cbKey();
+    return cbFlat(key).filter(function (x) { return cbSel[x.id]; }).map(function (x) { return l === 'ar' ? x.ar : x.en; });
+  }
+  function cbClose() { cbList.hidden = true; cbBack.hidden = true; cbBtn.setAttribute('aria-expanded', 'false'); }
+  function cbOpen() {
+    cbList.hidden = false; cbBack.hidden = false; cbBtn.setAttribute('aria-expanded', 'true');
+    if (getComputedStyle(cbList).position === 'absolute') {
+      cbWrap.scrollIntoView({ block: 'start', behavior: 'instant' });
+      var room = window.innerHeight - cbBtn.getBoundingClientRect().bottom - 16;
+      cbList.style.maxHeight = Math.max(200, Math.min(room, 440)) + 'px';
+    } else { cbList.style.maxHeight = ''; }
+    cbList.scrollTop = 0;
+  }
+  function cbSync() {
+    var key = cbKey(), n = key ? cbNames(lang, key).length : 0;
+    cbTxt.textContent = n === 1 ? t('cbOne') : n ? n + ' ' + t('cbSelected') : t('cbPick');
+    cbBtn.classList.toggle('has', n > 0);
+    Array.prototype.forEach.call(cbList.querySelectorAll('.cb-it'), function (b) {
+      var on = !!cbSel[b.getAttribute('data-id')];
+      b.classList.toggle('sel', on); b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    cbInfo.textContent = key ? cbNames(lang, key).join(lang === 'ar' ? '، ' : ', ') : '';
+    cbInfo.hidden = !n || cbBox.hidden;
+  }
+  function cbBuild() {
+    while (cbList.firstChild) cbList.removeChild(cbList.firstChild);
+    var key = cbKey(); if (!key) { cbSync(); return; }
+    var m = MENUS[key], n = 0, ar = lang === 'ar';
+    function heading(text) { var gh = document.createElement('div'); gh.className = 'pk-grp'; gh.textContent = text; cbList.appendChild(gh); }
+    heading(m.head[ar ? 0 : 1]);
+    var id = 0;
+    m.groups.forEach(function (g) {
+      if (g.ar) heading(ar ? g.ar : g.en);
+      g.items.forEach(function (x) {
+        var itemId = key + ':' + (id++), b = document.createElement('button'), box = document.createElement('span'), tx = document.createElement('span'),
+            h1 = document.createElement('b'), h2 = document.createElement('span');
+        b.type = 'button'; b.className = 'pk-it cb-it' + (n++ % 2 ? ' alt' : ''); b.setAttribute('role', 'option'); b.setAttribute('data-id', itemId);
+        box.className = 'cb-chk'; tx.className = 'cb-txt'; h1.className = 'pk-h'; h2.className = 'pk-d';
+        h1.textContent = ar ? x[0] : x[1]; h2.textContent = ar ? x[1] : x[0];
+        tx.appendChild(h1); tx.appendChild(h2); b.appendChild(box); b.appendChild(tx);
+        b.addEventListener('click', function () { if (cbSel[itemId]) delete cbSel[itemId]; else cbSel[itemId] = 1; cbSync(); saveDraft(); });
+        cbList.appendChild(b);
+      });
+    });
+    var done = document.createElement('button'); done.type = 'button'; done.className = 'go cb-done'; done.textContent = t('cbDone');
+    done.addEventListener('click', function () { cbClose(); cbBtn.focus(); });
+    cbList.appendChild(done);
+    cbSync();
+  }
+  function cbClear() { cbSel = {}; cbBuild(); }
+  cbBack.addEventListener('click', cbClose);
+  cbBtn.addEventListener('click', function () { if (cbList.hidden) cbOpen(); else cbClose(); });
+  cbWrap.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !cbList.hidden) { cbClose(); cbBtn.focus(); } });
+  document.addEventListener('click', function (e) { if (!cbWrap.contains(e.target)) cbClose(); });
+
   function setLang(l) {
     lang = l;
     var h = document.documentElement;
     h.lang = l; h.dir = l === 'ar' ? 'rtl' : 'ltr';
     textNodes.forEach(function (el) { el.textContent = t(el.dataset.i18n); });
-    buildPkg();
+    buildPkg(); cbBuild();
     phNodes.forEach(function (el) { el.setAttribute('placeholder', t(el.dataset.i18nPh)); });
     document.title = t('title');
     btn.textContent = t('langBtn');
@@ -358,6 +471,7 @@
       [t('guests'), f.get('guests') + ' ' + t('guestsWord')],
       [t('sBuffet'), label('buffet')]
     ];
+    if (MENUS[f.get('buffet')] && cbNames(lang, f.get('buffet')).length) rows.push([t('sCoffee'), cbNames(lang, f.get('buffet')).join(lang === 'ar' ? '، ' : ', ')]);
     if (f.get('package')) rows.push([t('sPackage'), pkgLabel(String(f.get('package')), lang, true)]);
     sum.innerHTML = '';
     rows.forEach(function (r) {
@@ -378,9 +492,10 @@
     // the booking record has no buffet column yet, so the choice is written at the top of the notes staff see
     function buffetNote(v) {
       var NAMES = { Ordinary: 'Ordinary Buffet / بوفيه عادي', VIP: 'Small Buffet only for Al-Baha / بوفية الجمعات الصغيرة - الباحة فقط',
-        Coffee: 'Coffee break Buffet / بوفيه كوفي بريك', VIPKing: 'VIP King Buffet / بوفيه VIP ملكي', Silver: 'Silver Buffet / بوفيه الفضي' };
+        Coffee: 'Coffee break Buffet / بوفيه كوفي بريك', VIPKing: 'VIP King Buffet / بوفيه VIP ملكي', Silver: 'Silver Buffet / بوفيه الفضي', Breakfast: 'Breakfast Buffet / بوفيه فطور' };
       var s = 'Buffet type / نوع البوفيه: ' + (NAMES[v] || NAMES.Ordinary), p = f.get('package');
       if (p) s += '\nPackage / الباقة: ' + pkgLabel(String(p), 'en', true) + ' / ' + pkgLabel(String(p), 'ar', true);
+      var cn = MENUS[v] ? cbNames('ar', v) : []; if (cn.length) s += '\n' + MENUS[v].notes[1] + ' / ' + MENUS[v].notes[0] + ' (' + cn.length + '): ' + cn.join('، ');
       return s;
     }
     var payload = {
@@ -403,7 +518,7 @@
   });
 
   document.getElementById('again').addEventListener('click', function () {
-    form.reset(); clearDraft(); togglePkg(); setCal(); applyGate(); form.style.display = ''; box.classList.remove('show');
+    form.reset(); clearDraft(); togglePkg(); setCal(); applyGate(); cbClear(); form.style.display = ''; box.classList.remove('show');
   });
 
   // ----- Keep the customer's details while they look at the price list -----
@@ -412,7 +527,7 @@
     if (box.classList.contains('show')) return;
     var o = {};
     DRAFT_FIELDS.forEach(function (n) { o[n] = form.elements[n].value; });
-    o.hy = hy.value; o.hm = hm.value; o.hd = hd.value;
+    o.hy = hy.value; o.hm = hm.value; o.hd = hd.value; o.cb = Object.keys(cbSel);
     try { sessionStorage.setItem(DRAFT, JSON.stringify(o)); } catch (e) {}
   }
   function clearDraft() { try { sessionStorage.removeItem(DRAFT); } catch (e) {} }
@@ -421,6 +536,7 @@
     try { o = JSON.parse(sessionStorage.getItem(DRAFT) || 'null'); } catch (e) {}
     if (o) {
       DRAFT_FIELDS.forEach(function (n) { if (o[n] != null) form.elements[n].value = o[n]; });
+      cbSel = {}; (o.cb || []).forEach(function (k) { cbSel[k] = 1; });
       togglePkg();
       if (o['package'] != null && !pkgSel.disabled) { pkgSel.value = o['package']; updInfo(); }
       setCal();
